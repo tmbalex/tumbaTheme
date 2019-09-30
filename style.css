@@ -1,0 +1,302 @@
+/*
+Theme Name: WP Tumba
+Description: A demo theme built to accompany the Treehouse blog post <a href="http://teamtreehouse.com/wordpress-bootstrap-theme-tutorial">How to Build a WordPress Theme with Bootstrap</a>.
+Author: Alex Brest
+Version: 1.0
+Tags: responsive, black, bootstrap
+*/
+
+body{
+  background: #00EDAE;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.thold{
+
+}
+
+.front-page-headline-section{
+  max-width: 1080px;
+  margin: 0 auto;
+  color: white;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  padding: 30px 40px;
+}
+
+.front-page-headline-section p{
+  font-family: "Gothic A1";
+  padding: 80px 20px 90px;
+  font-size: 49px;
+  font-weight: bold;
+  line-height: 1.2em;
+}
+
+@media (max-width: 770px) {
+  .front-page-headline-section p{
+    font-size: 1.8em;
+    line-height: 1.2em;
+  }
+}
+
+#scrlr{
+  height: 100vh;
+  margin-bottom: -100vh;
+}
+
+.front-page-section{
+  padding: 0;
+  margin: 0;
+}
+
+.front-page-section > p{
+  max-width: 1080px;
+  margin: 0 auto 30px;
+  color: white;
+  padding: 0 66px;
+  line-height: 1.3em;
+}
+
+.front-page-section p a{
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.front-page-section p a:before {
+    font-family: 'FontAwesome';
+    content: "\f178";
+    padding-right: 5px;
+}
+
+#mid_section{
+  color: #00EDAE;
+}
+
+#mid_section_toper{
+  height: 50px;
+  background: url("imgs/grudge_top.png") no-repeat;
+  background-size: cover;
+  background-position: center top;
+  z-index: 2;
+}
+
+#mid_section{
+  position: relative;
+  padding: 70px 0 150px;
+  background: black;
+  z-index: 2;
+}
+
+#mid_section p{
+  margin: 0 auto;
+  width: 70%;
+}
+
+#categories_tabs{
+  margin: 10px auto;
+  padding: 0;
+  border: 1px #008D5E solid;
+  border-radius: .25rem;
+}
+
+#categories_tabs li{
+  padding: 0;
+  margin: 0;
+}
+
+#categories_tabs a{
+  color: #008D5E;
+  font-size: 16px;
+  font-weight: bold;
+  border: 0;
+  border-radius: 0;
+  padding: 4px;
+}
+
+#categories_tabs a.active{
+  color: #000000;
+  background: #00EDAE;
+}
+
+#categories_tabs li:first-child a{
+  border-top-left-radius: .25rem;
+  border-bottom-left-radius: .25rem;
+}
+
+#categories_tabs li:last-child a{
+  border-top-right-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+}
+
+#categories_content .nav-tabs{
+  border: 0;
+  padding: 0;
+  margin: 50px 0 0;
+}
+
+#categories_content .nav-link{
+  color: #008D5E;
+  border: 0;
+  background: #000000;
+  font-size: 26px;
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+}
+
+#categories_content .nav-link.active{
+  color: #00EDAE;
+}
+
+.mid_section_page_headline_image{
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .mid_section_page_headline{
+    padding: 40px 0;
+  }
+
+  .mid_section_page_headline_text{
+    vertical-align: middle;
+  }
+
+  .mid_section_page_headline_image{
+    display: block;
+    object-fit: contain;
+  }
+
+  #stones_holder{
+    display: none;
+  }
+
+  .subcat_content{
+    display: none !important;
+  }
+}
+
+
+.stones_arrangement_data{
+    display: none;
+}
+
+#stones_holder{
+    background: #000000;
+    margin: 0px auto 50px;
+    width: 550px;
+    max-width: 100%;
+    height: 300px;
+    text-align: left;
+    transform: scale(0.6);
+}
+
+#stones{
+    background: #000000;
+    width: 550px;
+    max-width: 100%;
+    height: 400px;
+    position: absolute;
+    overflow: hidden;
+}
+
+.stone{
+  position: absolute;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+}
+
+#stone_a{
+  transform: rotate(-80deg) scale(1, 1);
+  left: 260px;
+  top: 110px;
+}
+
+#stone_b{
+  transform: rotate(95deg) scale(1, 1);
+  left: 280px;
+  top: 10px;
+}
+
+#stone_c{
+  transform: rotate(95deg) scale(1, 1);
+  left: 240px;
+  top: 150px;
+}
+
+#stone_d{
+  transform: rotate(-90deg) scale(1, 1);
+  left: 260px;
+  top: -70px;
+}
+
+#stone_e{
+  transform: rotate(90deg) scale(1, 1);
+  left: 240px;
+  top: 85px;
+}
+
+#stone_f{
+  transform: rotate(-100deg) scale(1, 1);
+  left: 280px;
+  top: 50px;
+}
+
+#mid_section_bottom{
+  height: 50px;
+  background: url("imgs/grudge_top.png") no-repeat;
+  background-size: cover;
+  background-position: center top;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+  margin-bottom: -50px;
+  z-index: 2;
+}
+
+.careers_section{
+  height: 100vh;
+  padding-top: 48vh;
+  margin-top: 50px;
+  background: url('imgs/recroom.png') no-repeat;
+  background-size: cover;
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0px;
+  z-index: 1;
+}
+
+.page-section{
+  max-width: 1080px;
+  margin: 0 auto 30px;
+  padding: 0 66px;
+  line-height: 1.3em;
+}
+
+.page-section > blockquote > p{
+  line-height: 1.3em;
+  border-left: 3px black solid;
+  padding: 10px;
+}
+
+
+footer{
+   background-image: linear-gradient(#00EDAE,  #B3FF00);
+}
+
+footer p{
+  min-height: 25px;
+  font-weight: bold;
+  text-align: left;
+}
+
+footer a{
+  color: #ffffff;
+  width: 100%;
+  display: block;
+  text-align: left;
+}
