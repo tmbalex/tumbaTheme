@@ -10,23 +10,20 @@ function setState(targetState){
 var tmpTargetState = 0;
 document.addEventListener('DOMContentLoaded', function() {
   $('.cat_tab').on('shown.bs.tab', function (e) {
-    var target = $(e.target).attr("href") // activated tab
-    var detachedElement = $("#stones_holder").detach();
-    $(target).children('ul').after(detachedElement);
     updateStonesDisplay();
   });
 
-  $('.subcat_tab').on('shown.bs.tab', function (e) {
-    var target = $(e.target).attr("href")
-    updateStonesDisplay();
-  });
+  // $('.subcat_tab').on('shown.bs.tab', function (e) {
+  //   var target = $(e.target).attr("href")
+  //   updateStonesDisplay();
+  // });
 
   updateStonesDisplay();
 });
 
 function updateStonesDisplay(){
   try {
-    stones_data = jQuery.parseJSON($(".subcat_content:visible").find(".stones_data").html());
+    stones_data = jQuery.parseJSON($(".cat_tab:visible").find(".stones_data").html());
   }
   catch(err) {
     //Default stones data
