@@ -376,31 +376,3 @@ footer a{
   display: block;
   text-align: left;
 }
-
-.headimage{
-  width: 100vw;
-  z-index: 6;
-  display: block;
-}
-
-.headimage img{
- width: 100vw;
- height: 300px;
- object-fit: cover;
-}
-
-.main-text{
-    width: 45%;
-    float: left;
-    font-size: 24px;
-    line-height: 28px;
-    padding: 10px;
-}
-
-.sub-text{
-  width: 50%;
-  float: right;
-  font-size: 18px;
-  line-height: 22px;
-  padding: 10px;
-}
