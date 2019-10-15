@@ -95,24 +95,22 @@
         <img src="<?php echo get_template_directory_uri(); ?>/imgs/person_icon.png">
       </div>
       <div class="position_title col-10">
-        Senior iOS developer
+        <?php the_title() ?>
       </div>
       <div class="position_empty col-2">
       </div>
       <div class="position_main_description col-10">
-        We are looking for an experienced iOS developer who is not afraid of a big code base. You will be an integral part of the team developing the future of one of the biggest news publishing apps in the world.
+        <?php echo $content_array[0] ?>
       </div>
       <div class="position_empty col-2">
       </div>
       <div class="position_sub_description col-5">
-        <span class="position_subheader">Core requirements</span>
-        All new code is written in Swift. We do have some legacy Objective-C code. Being able to read and fix it is a plus.<br />
-        We do value and listen to our developer’s ideas.<br />
-        The team is split in New York/US and Sofia/BG. Good communication is important part of our work.
+        <span class="position_subheader"><?php echo $content_array[1] ?></span>
+        <?php echo $content_array[2] ?>
       </div>
       <div class="position_sub_description col-5">
-        <span class="position_subheader">Main responsibilities</span>
-        Solve complex problems. When existing solutions does not match your needs. Support and improve existing code base. We strive not only to fix, but improve our current solution. Refactoring is part of our culture.
+        <span class="position_subheader"><?php echo $content_array[3] ?></span>
+        <?php echo $content_array[4] ?>
       </div>
     </div>
   </section>

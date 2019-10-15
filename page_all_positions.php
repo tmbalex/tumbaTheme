@@ -1,4 +1,34 @@
- <!-- Header -->
+<?php
+  function get_all_position_pages(){
+
+    $args = array(
+        'post_type'      => 'page',
+        'posts_per_page' => -1,
+        'post_parent'    => 339,  // page_id
+        'order'          => 'ASC',
+        'orderby'        => 'menu_order'
+     );
+
+     $links_array = [];
+     $counter = 0;
+
+
+     $parent = new WP_Query( $args );
+
+     if ( $parent->have_posts() ) :
+        while ( $parent->have_posts() ) : $parent->the_post();
+               $links_array[$counter]['name'] = get_the_title();
+               $links_array[$counter]['link'] = get_the_permalink();
+               $counter++;
+        endwhile;
+     endif;
+    //wp_reset_postdata();
+
+    return $links_array;
+  }
+?>
+
+  <!-- Header -->
   <header class="masthead d-flex p-5">
     <div class="container text-left my-auto">
       <img src="<?php echo get_template_directory_uri(); ?>/imgs/logo.png">
@@ -45,6 +75,7 @@
       background: url('<?php echo get_template_directory_uri(); ?>/imgs/perks_background.png') no-repeat;
       background-size: cover;
       width: 100%;
+      margin: 0;
       margin-top: -35px;
       padding-top: 150px;
     }
@@ -105,7 +136,7 @@
 
 
   <div id="page_header">
-    <h1>Career, carrier, curry. Just words. What really matters? Your talent and passion. Maybe we can play together.</h1>
+    <h1><?php echo $content_array[0] ?></h1>
     <div class="open_positions_link" href="#">
       <a href="#">SEE OPEN POSITIONS</a>
     </div>
@@ -120,44 +151,38 @@
   <div id="perks_holder" class="row">
     <div id="perks" class="row">
       <h3 class="col-12">Office perks & activities</h3>
-      <p class="perk col-4">Set your work schedule</p>
-      <p class="perk col-4">Work from home</p>
-      <p class="perk col-4">Salary = Needs & Wishes</p>
-      <p class="perk col-4">Office in the Woods</p>
-      <p class="perk col-4">Health, Dental & Vision Insurance</p>
-      <p class="perk col-4">Sports Membership</p>
-      <p class="perk col-4">Games Night: Board & Arcade Classics</p>
-      <p class="perk col-4">Regular charity events</p>
-      <p class="perk col-4">Monthly tech meetups</p>
-      <p class="perk col-4">Referral bonus</p>
-      <p class="perk col-4">Paid birth days off</p>
-      <p class="perk col-4">Healthy snacks in the office</p>
+      <div class="perk col-4"><?php echo $content_array[1] ?></div>
+      <div class="perk col-4"><?php echo $content_array[2] ?></div>
+      <div class="perk col-4"><?php echo $content_array[3] ?></div>
+      <div class="perk col-4"><?php echo $content_array[4] ?></div>
+      <div class="perk col-4"><?php echo $content_array[5] ?></div>
+      <div class="perk col-4"><?php echo $content_array[6] ?></div>
+      <div class="perk col-4"><?php echo $content_array[7] ?></div>
+      <div class="perk col-4"><?php echo $content_array[8] ?></div>
+      <div class="perk col-4"><?php echo $content_array[9] ?></div>
+      <div class="perk col-4"><?php echo $content_array[10] ?></div>
+      <div class="perk col-4"><?php echo $content_array[11] ?></div>
+      <div class="perk col-4"><?php echo $content_array[12] ?></div>
     </div>
   </div>
 
   <div id="quote_holder">
-    <p>We see code as a craft. We share the passion to co-create with clients & conquer tech challenges that teach skill and mastery.</p>
-    <a href="#"> MANIFESTO </a>
+    <?php echo $content_array[13] ?>
+    <?php echo $content_array[14] ?>
   </div>
 
   <div id="open_positions_holder" class="row">
     <p class="open-positions_title">Open positions</p>
 
-    <div class="open_position col-6">
-      <img src="<?php echo get_template_directory_uri(); ?>/imgs/person_icon.png"/>
-      <p>Senior iOS dev</p>
-      <a href="http://192.168.86.60/wrdprss/?page_id=344">DETAILS AND APPLICATION FORM</a>
-    </div>
+    <?php
+      $titles = get_all_position_pages();
+      foreach( $titles as $title){
+        echo "<div class=\"open_position col-6\">
+          <img src=\"" . get_template_directory_uri() . "/imgs/person_icon.png\"/>
+          <p>" . $title['name'] . "</p>
+          <a href=\"" . $title['link'] . "\">Details and application form</a>
+        </div>";
+      }
+    ?>
 
-    <div class="open_position col-6">
-      <img src="<?php echo get_template_directory_uri(); ?>/imgs/person_icon.png"/>
-      <p>Senior iOS dev</p>
-      <a href="http://192.168.86.60/wrdprss/?page_id=344">DETAILS AND APPLICATION FORM</a>
-    </div>
-
-    <div class="open_position col-6">
-      <img src="<?php echo get_template_directory_uri(); ?>/imgs/person_icon.png"/>
-      <p>Senior iOS dev</p>
-      <a href="http://192.168.86.60/wrdprss/?page_id=344">DETAILS AND APPLICATION FORM</a>
-    </div>
   </div>

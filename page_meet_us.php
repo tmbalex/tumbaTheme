@@ -1,3 +1,33 @@
+<?php
+  function get_all_contacts_pages(){
+
+    $args = array(
+        'post_type'      => 'page',
+        'posts_per_page' => -1,
+        'post_parent'    => 335,  // page_id
+        'order'          => 'ASC',
+        'orderby'        => 'menu_order'
+     );
+
+     $links_array = [];
+     $counter = 0;
+
+
+     $parent = new WP_Query( $args );
+
+     if ( $parent->have_posts() ) :
+        while ( $parent->have_posts() ) : $parent->the_post();
+               $links_array[$counter]['name'] = get_the_title();
+               $links_array[$counter]['link'] = get_the_permalink();
+               $counter++;
+        endwhile;
+     endif;
+    //wp_reset_postdata();
+
+    return $links_array;
+  }
+?>
+
  <!-- Header -->
   <header class="masthead d-flex p-5">
     <div class="container text-left my-auto">
@@ -25,7 +55,12 @@
     #location_holder{
       width: 100%;
       max-width: 960px;
-      margin: 0 auto 200px;;
+      margin: 0 auto 0;
+    }
+
+    #location_list{
+      bottom: 0;
+      position: absolute;
     }
 
     #location_list a{
@@ -64,22 +99,24 @@
 
   <div id="location_holder" class="row">
 
-    <h2>Sofia</h2>
 
-    <div id="location_list" class="col-4">
-      <a href="#">Sofia</a>
-      <a href="#">Palo Alto</a>
-      <a href="#">Upcoming events</a>
-      <a href="#">In the news</a>
+
+    <div class="col-4">
+
+      <div id="location_list">
+        <?php
+          $titles = get_all_contacts_pages();
+          foreach( $titles as $title){
+            echo "<a href=\"" . $title['link'] . "\">" . $title['name'] . "</a>";
+          }
+        ?>
+
+      </div>
+
     </div>
 
     <div id="location_properties" class="col-8">
-      <h3>Bulgaria</h3>
-      <p>
-        +359 88 812 34 56<br />
-        81 Tzar Boris III Blvd.<br />
-        Sofia, Bulgaria
-      </p>
+      <?php echo $content ?>
     </div>
 
   </div>
