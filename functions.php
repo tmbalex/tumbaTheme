@@ -173,7 +173,7 @@ function outsiders_shortcode( $atts, $content = null){
         <div class="row text-white">
           <div class="col-12">
             <h2>Outsiders, come in</h2>
-            <p><i class="fa fa-arrow-right"></i>CAREERS</p>
+            <a href="http://192.168.86.60/wrdprss/?page_id=339"><i class="fa fa-arrow-right"></i>CAREERS</a>
           </div>
         </div>
       </div>

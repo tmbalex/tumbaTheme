@@ -161,17 +161,25 @@
   <section id="form_section">
     <div id="form_holder" class="row">
       <h2 class="col-12">Apply for this position</h2>
-      <form class="col-8 row">
-        <input type="text" placeholder="Your name" class="col-12"/>
-        <input type="text" placeholder="Your email" class="col-12"/>
-
-        <div class="checkbox_holder col-12">
-          <input type="checkbox" id="scales" name="scales">
-          <label for="scales">I agree to Tumba's Terms&Conditions</label>
+      <form>
+        <div class="col-4" style="float: right; height: 300px;">
+            <div style="transform: rotate(7deg); width: 60%; height: 80%; border: 4px red solid; margin: 0 auto;">
+              <div style="color: red; font-size: 50px; border: 4px red solid; text-align: center; border-radius: 50%; width: 50%; margin: 45% 25%; display: block;">
+                +
+              </div>
+            </div>
         </div>
+        <div class="col-8 row">
+          <input type="text" placeholder="Your name" class="col-12"/>
+          <input type="text" placeholder="Your email" class="col-12"/>
 
-        <input type="submit" label="Submit" class="col-4"/>
+          <div class="checkbox_holder col-12">
+            <input type="checkbox" id="scales" name="scales">
+            <label for="scales">I agree to Tumba's Terms&Conditions</label>
+          </div>
 
+          <input type="submit" label="Submit" class="col-4"/>
+        </div>
       </form>
     </div>
   </section>

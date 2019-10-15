@@ -1,4 +1,10 @@
-
+  <style>
+  .social_links a{
+    display: block;
+    float: left;
+    width: auto;
+  }
+  </style>
   <!-- Footer -->
   <footer class="footer text-center">
     <div class="container">
@@ -32,12 +38,13 @@
 	  <a href="http://192.168.86.60/wrdprss/?page_id=337">Events</a>
 	  <a href="#">In the news</a>
 	  <a href="#">Lab</a>
-        </div>
-        <div class="col-4">
+  </div>
+  <div class="social_links col-4">
 	  <p>Follow us</p>
-	  <a href="#">F</a>
-	  <a href="#">G</a>
-	  <a href="#">I</a>
+	  <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/imgs/fb_icon.png" /></a>
+	  <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/imgs/ig_icon.png" /></a>
+	  <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/imgs/li_icon.png" /></a>
+	  <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/imgs/em_icon.png" /></a>
       </div>
     </div>
     <div class="stone-cairn">
