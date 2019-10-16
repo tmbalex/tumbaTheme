@@ -153,8 +153,8 @@
       <div class="col-12">
         <p style="font-size: 30px; color: #ffffff;"><img src="<?php echo get_template_directory_uri(); ?>/imgs/jobs_pile.png"/> Our reality</p>
       </div>
-      <div class="video_holder col-7" style="background: red;">
-
+      <div class="video_holder col-7">
+          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/a1uOyMezyi0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div class="images_holder col-5">
         <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
