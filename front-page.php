@@ -125,9 +125,21 @@
     	echo $menu_list;
     ?>
 
-    <?php if(have_posts()) : while(have_posts()) : the_post(); ?>
-      <?php the_content(); ?>
-    <?php endwhile; endif; ?>
+    <!-- Another section -->
+    <section class="content-section careers_section">
+      <div class="container text-center">
+        <div class="row text-white">
+          <div class="col-12">
+            <h2>Outsiders, come in</h2>
+            <a href="http://192.168.86.60/wrdprss/?page_id=339"><i class="fa fa-arrow-right"></i>CAREERS</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <?php //if(have_posts()) : while(have_posts()) : the_post(); ?>
+      <?php //the_content(); ?>
+    <?php //endwhile; endif; ?>
   </section>
 
 
@@ -135,8 +147,6 @@
   <section class="front-page-bottom-headline-section" style="text-shadow: 2px 2px 10px #00000033">
     <p class="frontpage-bottom-headline-text">
       <?php echo get_theme_mod('frontpage-bottom-headline')?>
-    </p>
-    <p class="frontpage-bottom-headline-link-text">
       <a href="<?php echo get_theme_mod('frontpage-bottom-headline-link-href')?>">
         <?php echo get_theme_mod('frontpage-bottom-headline-link')?>
       </a>
@@ -152,17 +162,6 @@
       <?php //echo get_theme_mod('frontpage-bottom-headline')?>
     </p>
   </section> -->
-
-  <section class="masthead d-flex p-5">
-    <div class="container text-left my-auto">
-      <h3 class="text-black">
-        <strong>
-          *.tumba
-        </strong>
-      </h3>
-    </div>
-    <div class="overlay"></div>
-  </section>
 
 <?php get_footer(); ?>
 

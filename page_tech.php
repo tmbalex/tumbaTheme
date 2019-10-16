@@ -1,3 +1,33 @@
+<?php
+  function get_all_pages_in_this_category(){
+
+    $args = array(
+        'post_type'      => 'page',
+        'posts_per_page' => -1,
+        'post_parent'    => wp_get_post_parent_id(),  // page_id
+        'order'          => 'ASC',
+        'orderby'        => 'menu_order'
+     );
+
+     $links_array = [];
+     $counter = 0;
+
+
+     $parent = new WP_Query( $args );
+
+     if ( $parent->have_posts() ) :
+        while ( $parent->have_posts() ) : $parent->the_post();
+               $links_array[$counter]['name'] = get_the_title();
+               $links_array[$counter]['link'] = get_the_permalink();
+               $counter++;
+        endwhile;
+     endif;
+    //wp_reset_postdata();
+
+    return $links_array;
+  }
+?>
+
  <!-- Header -->
   <header class="masthead d-flex p-5" style="background: black;">
     <div class="container text-left my-auto">
@@ -147,8 +177,6 @@
       transform: rotate(180deg);
     }
 
-
-
     #other_industries_holder{
       background: black;
       color: white;
@@ -163,7 +191,7 @@
 
     .industries_headline{
       font-size: 34px;
-      padding-bottom: 200px;
+      padding-bottom: 50px;
     }
 
     #last_cutout_holder{
@@ -253,17 +281,17 @@
 
   <section id="other_industries_holder">
     <div id="other_industries">
+      <img src="<?php echo get_template_directory_uri(); ?>/imgs/industries_pile.png" style="margin: 50px 0 30px;">
       <p class="industries_headline">More industries</p>
       <div id="industries" class="row">
-        <div class="industry col-4">
-          Smart City
-        </div>
-        <div class="industry col-4">
-          Smart City
-        </div>
-        <div class="industry col-4">
-          Smart City
-        </div>
+        <?php
+          $industries_list = get_all_pages_in_this_category();
+          foreach($industries_list as $element){
+              echo "<div class=\"industry col-4\">
+                <a href=\"" . $element[link] . "\">" . $element[name] . "</a>
+              </div>";
+          }
+        ?>
       </div>
     </div>
   </section>

@@ -33,154 +33,144 @@ function register_custom_menus() {
 }
 add_action( 'init', 'register_custom_menus' );
 
-// Short code for main menu
-function mmenu_shortcode( $atts, $content = null){
-
-  $menu_name = 'mid_section-menu'; // specify custom menu slug
-	if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) {
-
-		$menu = wp_get_nav_menu_object($locations[$menu_name]);
-		$menu_items = wp_get_nav_menu_items($menu->term_id);
-
-    $category_index = 1;
-    foreach ((array) $menu_items as $key => $menu_item) {
-
-      if($menu_item->menu_item_parent == 0){
-        $categories_tabs_value .=
-    		 '<li class="nav-item col">
-    		    <a class="cat_tab nav-link' . (($category_index == 1) ? ' active' : '') . '" id="categories_tab_' . $category_index . '" data-toggle="tab" href="#categories_content_' . $category_index . '" role="tab" aria-controls="category_' . $category_index . '" aria-selected="true">' . $menu_item->title . '</a>
-          </li> ';
-
-        $category_stones_arangement[$category_index] = get_post_field('post_content', get_post_meta( $menu_item->ID, '_menu_item_object_id', true ));
-
-        $category_index ++;
-        $subcategory_index = 1;
-      }
-      else{
-        $subcategory_tabs_value[$menu_item->menu_item_parent] .=
-        '<div class="subcategory col-12 col-md-6" style="padding: 10px;">
-          <a href="" style="margin-bottom: 10px;">' . $menu_item->title . '</a>
-          <div>'
-           . get_post_field('post_content', get_post_meta( $menu_item->ID, '_menu_item_object_id', true )) . '
-          </div>
-        </div>';
-      }
-    }
-
-    $category_index = 1;
-    foreach($subcategory_tabs_value as $index => $subcat_tab_elem){
-      $categories_content_value .= '
-      <div class="cat_tab tab-pane fade show' . (($category_index == 1) ? ' active' : '') . '" id="categories_content_' . $category_index . '" role="tabpanel" aria-labelledby="category_' . $category_index . '-tab">
-           ' . $category_stone_arrangement . '
-
-           <ul class="nav nav-tabs mid-nav-ul col-12 row" id="subcategories_tabs_' . $category_index . '" role="tablist">
-             ' . $subcat_tab_elem . '
-           </ul>
-
-           <div class="tab-content col-12" id="subcategories_content_' . $category_index . '">
-             ' . $subcategory_content_value[$index] . '
-           </div>
-
-           ' . $category_stones_arangement[$category_index] . '
-      </div>';
-      $category_index++;
-    }
-
-    // $category_index = 1;
-		// foreach ((array) $menu_items as $key => $menu_item) {
-    //
-    //   if($menu_item->menu_item_parent == 0){
-    //     $categories_tabs_value .=
-    // 		 '<li class="nav-item col">
-    // 		    <a class="cat_tab nav-link' . (($category_index == 1) ? ' active' : '') . '" id="categories_tab_' . $category_index . '" data-toggle="tab" href="#categories_content_' . $category_index . '" role="tab" aria-controls="category_' . $category_index . '" aria-selected="true">' . $menu_item->title . '</a>
-    // 		  </li>';
-    //     $category_index ++;
-    //     $subcategory_index = 1;
-    //   }
-    //   else{
-    //     $subcategory_tabs_value[$menu_item->menu_item_parent] .= '
-    //     <li class="nav-item col-12 col-md pl-5 pr-5 p-md-1 mid_section_page_headline row">
-    //      <img src="' . get_template_directory_uri() . '/imgs/pile.png" class="mid_section_page_headline_image col-4 col-md-0" />
-    //      <a class="subcat_tab nav-link col-8 col-md-12 mid_section_page_headline_text' . (($subcategory_index == 1) ? ' active' : '') . '" id="subcategories_tab_' . $category_index . '_' . $subcategory_index . '" data-toggle="tab" href="#subcategories_content_' . $category_index . '_' . $subcategory_index . '" role="tab" aria-controls="subcategory_' . $category_index . '_' . $subcategory_index . '" aria-selected="true">
-    //        ' . $menu_item->title . '
-    //      </a>
-    //     </li>';
-    //
-    //     $subcategory_content_value[$menu_item->menu_item_parent] .= '
-    //       <div class="subcat_content tab-pane fade show' . (($subcategory_index == 1) ? ' active' : '') . '" id="subcategories_content_' . $category_index . '_' . $subcategory_index . '" role="tabpanel" aria-labelledby="subcategory_' . $category_index . '_' . $subcategory_index . '-tab">
-    //         ' . get_post_field('post_content', get_post_meta( $menu_item->ID, '_menu_item_object_id', true )) . '
-    //       </div>';
-    //     $subcategory_index++;
-    //   }
-    //
-		// }
-
-
-
-
-
-
-
-    $menu_list = '
-    <!-- Mid section -->
-      <div id="mid_section_toper" class="col-12"></div>
-      <div id="mid_section" class="content-section">
-        <div class="container text-center">
-         <div class="row">
-
-            <div class="col-12">
-              <ul class="nav nav-tabs col-10 row" id="categories_tabs" role="tablist">
-                ' . $categories_tabs_value . '
-              </ul>
-            </div>
-
-            <div id="stones_holder" style="margin: 0 auto;" onclick="setState()">
-              <div id="stones">
-                <img id="stone_a" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_a.png"/>
-                <img id="stone_b" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_b.png"/>
-                <img id="stone_c" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_c.png"/>
-                <img id="stone_d" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_d.png"/>
-                <img id="stone_e" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_e.png"/>
-                <img id="stone_f" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_f.png"/>
-              </div>
-            </div>
-
-
-            <div class="tab-content col-12" id="categories_content">
-              ' . $categories_content_value . '
-            </div>
-
-         </div>
-         <script src="' . get_template_directory_uri() . '/js/mid_section_module_handler.js"></script>
-        </div>
-      </div>
-      <div id="mid_section_bottom" class="col-12"></div>';
-
-	} else {
-		 $menu_list = '<!-- no list defined -->';
-	}
-	return $menu_list;
-}
-add_shortcode("mmenu", "mmenu_shortcode"); //[mmenu]
-
-// Short code for outsiders
-function outsiders_shortcode( $atts, $content = null){
-
-  return '
-    <!-- Another section -->
-    <section class="content-section careers_section">
-      <div class="container text-center">
-        <div class="row text-white">
-          <div class="col-12">
-            <h2>Outsiders, come in</h2>
-            <a href="http://192.168.86.60/wrdprss/?page_id=339"><i class="fa fa-arrow-right"></i>CAREERS</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    ';
-}
-add_shortcode("outsiders", "outsiders_shortcode");
+// // Short code for main menu
+// function mmenu_shortcode( $atts, $content = null){
+//
+//   $menu_name = 'mid_section-menu'; // specify custom menu slug
+// 	if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) {
+//
+// 		$menu = wp_get_nav_menu_object($locations[$menu_name]);
+// 		$menu_items = wp_get_nav_menu_items($menu->term_id);
+//
+//     $category_index = 1;
+//     foreach ((array) $menu_items as $key => $menu_item) {
+//
+//       if($menu_item->menu_item_parent == 0){
+//         $categories_tabs_value .=
+//     		 '<li class="nav-item col">
+//     		    <a class="cat_tab nav-link' . (($category_index == 1) ? ' active' : '') . '" id="categories_tab_' . $category_index . '" data-toggle="tab" href="#categories_content_' . $category_index . '" role="tab" aria-controls="category_' . $category_index . '" aria-selected="true">' . $menu_item->title . '</a>
+//           </li> ';
+//
+//         $category_stones_arangement[$category_index] = get_post_field('post_content', get_post_meta( $menu_item->ID, '_menu_item_object_id', true ));
+//
+//         $category_index ++;
+//         $subcategory_index = 1;
+//       }
+//       else{
+//         $subcategory_tabs_value[$menu_item->menu_item_parent] .=
+//         '<div class="subcategory col-12 col-md-6" style="padding: 10px;">
+//           <a href="" style="margin-bottom: 10px;">' . $menu_item->title . '</a>
+//           <div>'
+//            . get_post_field('post_content', get_post_meta( $menu_item->ID, '_menu_item_object_id', true )) . '
+//           </div>
+//         </div>';
+//       }
+//     }
+//
+//     $category_index = 1;
+//     foreach($subcategory_tabs_value as $index => $subcat_tab_elem){
+//       $categories_content_value .= '
+//       <div class="cat_tab tab-pane fade show' . (($category_index == 1) ? ' active' : '') . '" id="categories_content_' . $category_index . '" role="tabpanel" aria-labelledby="category_' . $category_index . '-tab">
+//            ' . $category_stone_arrangement . '
+//
+//            <ul class="nav nav-tabs mid-nav-ul col-12 row" id="subcategories_tabs_' . $category_index . '" role="tablist">
+//              ' . $subcat_tab_elem . '
+//            </ul>
+//
+//            <div class="tab-content col-12" id="subcategories_content_' . $category_index . '">
+//              ' . $subcategory_content_value[$index] . '
+//            </div>
+//
+//            ' . $category_stones_arangement[$category_index] . '
+//       </div>';
+//       $category_index++;
+//     }
+//
+//     // $category_index = 1;
+// 		// foreach ((array) $menu_items as $key => $menu_item) {
+//     //
+//     //   if($menu_item->menu_item_parent == 0){
+//     //     $categories_tabs_value .=
+//     // 		 '<li class="nav-item col">
+//     // 		    <a class="cat_tab nav-link' . (($category_index == 1) ? ' active' : '') . '" id="categories_tab_' . $category_index . '" data-toggle="tab" href="#categories_content_' . $category_index . '" role="tab" aria-controls="category_' . $category_index . '" aria-selected="true">' . $menu_item->title . '</a>
+//     // 		  </li>';
+//     //     $category_index ++;
+//     //     $subcategory_index = 1;
+//     //   }
+//     //   else{
+//     //     $subcategory_tabs_value[$menu_item->menu_item_parent] .= '
+//     //     <li class="nav-item col-12 col-md pl-5 pr-5 p-md-1 mid_section_page_headline row">
+//     //      <img src="' . get_template_directory_uri() . '/imgs/pile.png" class="mid_section_page_headline_image col-4 col-md-0" />
+//     //      <a class="subcat_tab nav-link col-8 col-md-12 mid_section_page_headline_text' . (($subcategory_index == 1) ? ' active' : '') . '" id="subcategories_tab_' . $category_index . '_' . $subcategory_index . '" data-toggle="tab" href="#subcategories_content_' . $category_index . '_' . $subcategory_index . '" role="tab" aria-controls="subcategory_' . $category_index . '_' . $subcategory_index . '" aria-selected="true">
+//     //        ' . $menu_item->title . '
+//     //      </a>
+//     //     </li>';
+//     //
+//     //     $subcategory_content_value[$menu_item->menu_item_parent] .= '
+//     //       <div class="subcat_content tab-pane fade show' . (($subcategory_index == 1) ? ' active' : '') . '" id="subcategories_content_' . $category_index . '_' . $subcategory_index . '" role="tabpanel" aria-labelledby="subcategory_' . $category_index . '_' . $subcategory_index . '-tab">
+//     //         ' . get_post_field('post_content', get_post_meta( $menu_item->ID, '_menu_item_object_id', true )) . '
+//     //       </div>';
+//     //     $subcategory_index++;
+//     //   }
+//     //
+// 		// }
+//
+//
+//
+//
+//
+//
+//
+//     $menu_list = '
+//     <!-- Mid section -->
+//       <div id="mid_section_toper" class="col-12"></div>
+//       <div id="mid_section" class="content-section">
+//         <div class="container text-center">
+//          <div class="row">
+//
+//             <div class="col-12">
+//               <ul class="nav nav-tabs col-10 row" id="categories_tabs" role="tablist">
+//                 ' . $categories_tabs_value . '
+//               </ul>
+//             </div>
+//
+//             <div id="stones_holder" style="margin: 0 auto;" onclick="setState()">
+//               <div id="stones">
+//                 <img id="stone_a" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_a.png"/>
+//                 <img id="stone_b" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_b.png"/>
+//                 <img id="stone_c" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_c.png"/>
+//                 <img id="stone_d" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_d.png"/>
+//                 <img id="stone_e" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_e.png"/>
+//                 <img id="stone_f" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_f.png"/>
+//               </div>
+//             </div>
+//
+//
+//             <div class="tab-content col-12" id="categories_content">
+//               ' . $categories_content_value . '
+//             </div>
+//
+//          </div>
+//          <script src="' . get_template_directory_uri() . '/js/mid_section_module_handler.js"></script>
+//         </div>
+//       </div>
+//       <div id="mid_section_bottom" class="col-12"></div>';
+//
+// 	} else {
+// 		 $menu_list = '<!-- no list defined -->';
+// 	}
+// 	return $menu_list;
+// }
+// add_shortcode("mmenu", "mmenu_shortcode"); //[mmenu]
+//
+// // Short code for outsiders
+// function outsiders_shortcode( $atts, $content = null){
+//
+//   return '
+//
+//     ';
+// }
+// add_shortcode("outsiders", "outsiders_shortcode");
 
 
 

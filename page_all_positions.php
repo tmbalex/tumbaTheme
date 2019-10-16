@@ -57,7 +57,7 @@
 
     #our_reality_section{
       background: black;
-      height: 400px;
+      padding-bottom: 40px;
     }
 
     .black_cutout_top{
@@ -130,6 +130,11 @@
       font-size: 30px;
     }
 
+    .images_holder img{
+      margin: 5px;
+      float: right;
+    }
+
   </style>
 
 
@@ -144,6 +149,28 @@
 
   <img class="black_cutout_top" src="<?php echo get_template_directory_uri(); ?>/imgs/grudge_top.png">
   <section id="our_reality_section">
+    <div class="row" style="padding-top: 50px; margin: 0 auto; max-width: 960px;">
+      <div class="col-12">
+        <p style="font-size: 30px; color: #ffffff;"><img src="<?php echo get_template_directory_uri(); ?>/imgs/jobs_pile.png"/> Our reality</p>
+      </div>
+      <div class="video_holder col-7" style="background: red;">
+
+      </div>
+      <div class="images_holder col-5">
+        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
+        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
+        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
+        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
+        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
+        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
+        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
+        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
+        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
+        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
+        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
+        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
+      </div>
+    </div>
 
   </section>
   <img class="black_cutout_bottom" src="<?php echo get_template_directory_uri(); ?>/imgs/grudge_top.png">
