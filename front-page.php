@@ -24,9 +24,30 @@
   <section class="content-section front-page-section"  style="text-shadow: 2px 2px 10px #00000033">
     <div id="mid_section_toper_green" class="col-12" style="height: 60px;"></div>
       <div class="col-12" style="background: #00EDAE; z-index: 2; margin: 0 auto; padding: 0;">
-        <div style="max-width: 1280px; margin: 0 auto; font-size: 36px; padding: 200px;">
+        <div class="row" style="max-width: 1280px; margin: 0 auto; font-size: 36px; font-weight: bold; padding: 100px 20px 0; color: white;">
+            <div class="col-3" style="text-align: center;">
+              <img src="<?php echo get_template_directory_uri(); ?>/imgs/fb_icon.png" />
+              <p style="font-weight: bold; padding: 0; font-size: 100px; line-height: 100px; margin-top: 60px;">10</p>
+              <p style="font-size: 18px">Fortune 500 clients</p>
+            </div>
+            <div class="col-3" style="text-align: center;">
+              <img src="<?php echo get_template_directory_uri(); ?>/imgs/fb_icon.png" />
+              <p style="font-weight: bold; padding: 0; font-size: 100px; line-height: 100px; margin-top: 60px;">80</p>
+              <p style="font-size: 18px">% loyal clients</p>
+            </div>
+            <div class="col-3" style="text-align: center;">
+              <img src="<?php echo get_template_directory_uri(); ?>/imgs/fb_icon.png" />
+              <p style="font-weight: bold; padding: 0; font-size: 100px; line-height: 100px; margin-top: 60px;">48</p>
+              <p style="font-size: 18px">% business growth</p>
+            </div>
+            <div class="col-3" style="text-align: center;">
+              <img src="<?php echo get_template_directory_uri(); ?>/imgs/fb_icon.png" />
+              <p style="font-weight: bold; padding: 0; font-size: 100px; line-height: 100px; margin-top: 60px;">11</p>
+              <p style="font-size: 18px">years of average on IT practice</p>
+            </div>
+        </div>
+        <div style="max-width: 1280px; margin: 0 auto; font-size: 36px; padding: 50px 50px 100px; text-align: center;">
             <?php echo get_theme_mod('frontpage-top-headline')?>
-
             <a href="<?php echo get_theme_mod('frontpage-top-headline-link-href')?>">
               <?php echo get_theme_mod('frontpage-top-headline-link')?>
             </a>
@@ -145,12 +166,28 @@
 
 
   <section class="front-page-bottom-headline-section" style="text-shadow: 2px 2px 10px #00000033">
-    <p class="frontpage-bottom-headline-text">
-      <?php echo get_theme_mod('frontpage-bottom-headline')?>
-      <a href="<?php echo get_theme_mod('frontpage-bottom-headline-link-href')?>">
-        <?php echo get_theme_mod('frontpage-bottom-headline-link')?>
-      </a>
-    </p>
+    <div class="siema" style="width: 100%; max-width: 960px; margin: 100px auto;">
+      <div style="background: url('<?php echo get_template_directory_uri() ?>/imgs/car_ind_icon.png') no-repeat top left 70px">
+        <p style="display: block; margin: 0 auto; padding: 100px 0 0; width: 600px; font-size: 44px; font-weight: bold;">Let's talk about autonomous vehicles</p>
+        <a style="padding: 10px 180px" href="http://192.168.86.60/wrdprss/?page_id=280">SEE OUR LATEST PROJECT</a>
+      </div>
+      <div style="background: url('<?php echo get_template_directory_uri() ?>/imgs/car_ind_icon.png') no-repeat top left 70px">
+        <p style="display: block; margin: 0 auto; padding: 100px 0 0; width: 600px; font-size: 44px; font-weight: bold;">Let's talk about autonomous vehicles 2</p>
+        <a style="padding: 10px 180px" href="http://192.168.86.60/wrdprss/?page_id=280">SEE OUR LATEST PROJECT</a>
+      </div>
+      <div style="background: url('<?php echo get_template_directory_uri() ?>/imgs/car_ind_icon.png') no-repeat top left 70px">
+        <p style="display: block; margin: 0 auto; padding: 100px 0 0; width: 600px; font-size: 44px; font-weight: bold;">Let's talk about autonomous vehicles 3</p>
+        <a style="padding: 10px 180px" href="http://192.168.86.60/wrdprss/?page_id=280">SEE OUR LATEST PROJECT</a>
+      </div>
+      <div style="background: url('<?php echo get_template_directory_uri() ?>/imgs/car_ind_icon.png') no-repeat top left 70px">
+        <p style="display: block; margin: 0 auto; padding: 100px 0 0; width: 600px; font-size: 44px; font-weight: bold;">Let's talk about autonomous vehicles 4</p>
+        <a style="padding: 10px 180px" href="http://192.168.86.60/wrdprss/?page_id=280">SEE OUR LATEST PROJECT</a>
+      </div>
+      <div style="background: url('<?php echo get_template_directory_uri() ?>/imgs/car_ind_icon.png') no-repeat top left 70px">
+        <p style="display: block; margin: 0 auto; padding: 100px 0 0; width: 600px; font-size: 44px; font-weight: bold;">Let's talk about autonomous vehicles 5</p>
+        <a style="padding: 10px 180px" href="http://192.168.86.60/wrdprss/?page_id=280">SEE OUR LATEST PROJECT</a>
+      </div>
+    </div>
   </section>
 
   <!-- <section class="content-section front-page-section">
@@ -165,8 +202,11 @@
 
 <?php get_footer(); ?>
 
-<script>
-
+<script src="<?php echo get_template_directory_uri() ?>/js/siema.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+      new Siema();
+    });
     // $(function(){
     //   var maxMargin = $('#mid_section_toper').offset().top;
     //   var scrolled = false;
