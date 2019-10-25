@@ -24,39 +24,40 @@ document.addEventListener('DOMContentLoaded', function() {
 function updateStonesDisplay(){
   try {
     stones_data = jQuery.parseJSON($(".cat_tab:visible").find(".stones_data").html());
+    console.log(stones_data);
   }
   catch(err) {
     //Default stones data
     stones_data = {
       "stone_a": {
-        "transform": "rotate(-80deg) scale(1, 1)",
+        "transform": "rotate(-80deg) scale(1.5, 1.5)",
         "left": "260px",
-        "top": "110px"
+        "top": "145px"
       },
       "stone_b": {
-        "transform": "rotate(95deg) scale(1, 1)",
+        "transform": "rotate(95deg) scale(1.5, 1.5)",
         "left": "280px",
-        "top": "10px"
+        "top": "65px"
       },
       "stone_c": {
-        "transform": "rotate(95deg) scale(1, 1)",
+        "transform": "rotate(95deg) scale(1.5, 1.5)",
         "left": "240px",
-        "top": "150px"
+        "top": "190px"
       },
       "stone_d": {
-        "transform": "rotate(-90deg) scale(1, 1)",
+        "transform": "rotate(-90deg) scale(1.5, 1.5)",
         "left": "260px",
-        "top": "-70px"
+        "top": "0px"
       },
       "stone_e": {
-        "transform": "rotate(90deg) scale(1, 1)",
+        "transform": "rotate(90deg) scale(1.5, 1.5)",
         "left": "240px",
-        "top": "85px"
+        "top": "117px"
       },
       "stone_f": {
-        "transform": "rotate(-100deg) scale(1, 1)",
+        "transform": "rotate(-100deg) scale(1.5, 1.5)",
         "left": "280px",
-        "top": "50px"
+        "top": "73px"
       }
     }
   }

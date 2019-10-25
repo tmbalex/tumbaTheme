@@ -22,26 +22,26 @@
   </div>
 
   <section class="content-section front-page-section"  style="text-shadow: 2px 2px 10px #00000033">
-    <div id="mid_section_toper_green" class="col-12" style="height: 60px;"></div>
+    <div id="mid_section_toper_green" class="col-12" style="height: 80px;"></div>
       <div class="col-12" style="background: #00EDAE; z-index: 2; margin: 0 auto; padding: 0;">
         <div class="row" style="max-width: 1280px; margin: 0 auto; font-size: 36px; font-weight: bold; padding: 100px 20px 0; color: white;">
             <div class="col-3" style="text-align: center;">
-              <img src="<?php echo get_template_directory_uri(); ?>/imgs/fb_icon.png" />
+              <img src="<?php echo get_template_directory_uri(); ?>/imgs/clients_icon.svg" />
               <p style="font-weight: bold; padding: 0; font-size: 100px; line-height: 100px; margin-top: 60px;">10</p>
               <p style="font-size: 18px">Fortune 500 clients</p>
             </div>
             <div class="col-3" style="text-align: center;">
-              <img src="<?php echo get_template_directory_uri(); ?>/imgs/fb_icon.png" />
+              <img src="<?php echo get_template_directory_uri(); ?>/imgs/loyal_icon.svg" />
               <p style="font-weight: bold; padding: 0; font-size: 100px; line-height: 100px; margin-top: 60px;">80</p>
               <p style="font-size: 18px">% loyal clients</p>
             </div>
             <div class="col-3" style="text-align: center;">
-              <img src="<?php echo get_template_directory_uri(); ?>/imgs/fb_icon.png" />
+              <img src="<?php echo get_template_directory_uri(); ?>/imgs/growth_icon.svg" />
               <p style="font-weight: bold; padding: 0; font-size: 100px; line-height: 100px; margin-top: 60px;">48</p>
               <p style="font-size: 18px">% business growth</p>
             </div>
             <div class="col-3" style="text-align: center;">
-              <img src="<?php echo get_template_directory_uri(); ?>/imgs/fb_icon.png" />
+              <img src="<?php echo get_template_directory_uri(); ?>/imgs/years_icon.svg" />
               <p style="font-weight: bold; padding: 0; font-size: 100px; line-height: 100px; margin-top: 60px;">11</p>
               <p style="font-size: 18px">years of average on IT practice</p>
             </div>
@@ -120,12 +120,12 @@
 
                 <div id="stones_holder" style="margin: 0 auto;" onclick="setState()">
                   <div id="stones">
-                    <img id="stone_a" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_a.png"/>
-                    <img id="stone_b" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_b.png"/>
-                    <img id="stone_c" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_c.png"/>
-                    <img id="stone_d" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_d.png"/>
-                    <img id="stone_e" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_e.png"/>
-                    <img id="stone_f" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_f.png"/>
+                    <img id="stone_a" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_a.svg"/>
+                    <img id="stone_b" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_b.svg"/>
+                    <img id="stone_c" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_c.svg"/>
+                    <img id="stone_d" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_d.svg"/>
+                    <img id="stone_e" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_e.svg"/>
+                    <img id="stone_f" class="stone" src="' . get_template_directory_uri() . '/imgs/stone_f.svg"/>
                   </div>
                 </div>
 
@@ -156,6 +156,8 @@
           </div>
         </div>
       </div>
+
+      <div id="mid_section_toper" class="col-12"></div>
     </section>
 
     <?php //if(have_posts()) : while(have_posts()) : the_post(); ?>
@@ -167,26 +169,28 @@
 
   <section class="front-page-bottom-headline-section" style="text-shadow: 2px 2px 10px #00000033">
     <div class="siema" style="width: 100%; max-width: 960px; margin: 100px auto;">
-      <div style="background: url('<?php echo get_template_directory_uri() ?>/imgs/car_ind_icon.png') no-repeat top left 70px">
+      <div style="background: url('<?php echo get_template_directory_uri() ?>/imgs/car_ind_icon.svg') no-repeat top left 70px">
         <p style="display: block; margin: 0 auto; padding: 100px 0 0; width: 600px; font-size: 44px; font-weight: bold;">Let's talk about autonomous vehicles</p>
         <a style="padding: 10px 180px" href="http://192.168.86.60/wrdprss/?page_id=280">SEE OUR LATEST PROJECT</a>
       </div>
-      <div style="background: url('<?php echo get_template_directory_uri() ?>/imgs/car_ind_icon.png') no-repeat top left 70px">
+      <div style="background: url('<?php echo get_template_directory_uri() ?>/imgs/car_ind_icon.svg') no-repeat top left 70px">
         <p style="display: block; margin: 0 auto; padding: 100px 0 0; width: 600px; font-size: 44px; font-weight: bold;">Let's talk about autonomous vehicles 2</p>
         <a style="padding: 10px 180px" href="http://192.168.86.60/wrdprss/?page_id=280">SEE OUR LATEST PROJECT</a>
       </div>
-      <div style="background: url('<?php echo get_template_directory_uri() ?>/imgs/car_ind_icon.png') no-repeat top left 70px">
+      <div style="background: url('<?php echo get_template_directory_uri() ?>/imgs/car_ind_icon.svg') no-repeat top left 70px">
         <p style="display: block; margin: 0 auto; padding: 100px 0 0; width: 600px; font-size: 44px; font-weight: bold;">Let's talk about autonomous vehicles 3</p>
         <a style="padding: 10px 180px" href="http://192.168.86.60/wrdprss/?page_id=280">SEE OUR LATEST PROJECT</a>
       </div>
-      <div style="background: url('<?php echo get_template_directory_uri() ?>/imgs/car_ind_icon.png') no-repeat top left 70px">
+      <div style="background: url('<?php echo get_template_directory_uri() ?>/imgs/car_ind_icon.svg') no-repeat top left 70px">
         <p style="display: block; margin: 0 auto; padding: 100px 0 0; width: 600px; font-size: 44px; font-weight: bold;">Let's talk about autonomous vehicles 4</p>
         <a style="padding: 10px 180px" href="http://192.168.86.60/wrdprss/?page_id=280">SEE OUR LATEST PROJECT</a>
       </div>
-      <div style="background: url('<?php echo get_template_directory_uri() ?>/imgs/car_ind_icon.png') no-repeat top left 70px">
+      <div style="background: url('<?php echo get_template_directory_uri() ?>/imgs/car_ind_icon.svg') no-repeat top left 70px">
         <p style="display: block; margin: 0 auto; padding: 100px 0 0; width: 600px; font-size: 44px; font-weight: bold;">Let's talk about autonomous vehicles 5</p>
         <a style="padding: 10px 180px" href="http://192.168.86.60/wrdprss/?page_id=280">SEE OUR LATEST PROJECT</a>
       </div>
+    </div>
+    <div id="siema_pagination" style="width: 400px; text-align: center; margin: 0 auto;">
     </div>
   </section>
 
@@ -202,10 +206,77 @@
 
 <?php get_footer(); ?>
 
+
+
+<style>
+  .slider_dot{
+    width: 8px;
+    height: 8px;
+    background: #6d6d6d;
+    float: left;
+    margin: 30px 10px;
+    border-radius: 100%;
+    transition: 0.2s;
+    cursor: pointer;
+  }
+
+  .slider_dot_selected{
+  background: #1d1d1d;
+    width: 10px;
+    height: 10px;
+    margin: 29px 8px;
+  }
+</style>
 <script src="<?php echo get_template_directory_uri() ?>/js/siema.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-      new Siema();
+
+
+      // New siema instance
+      const mySiema = new Siema({
+        duration: 200,
+        easing: 'ease-out',
+        perPage: 1,
+        startIndex: 0,
+        draggable: true,
+        multipleDrag: true,
+        threshold: 20,
+        loop: true,
+        rtl: false,
+        onChange: updateDots
+      });
+
+      function updateDots() {
+        $("#slider-techs").children().each(function() {
+            $(this).removeClass("slider_dot_selected");
+        });
+        $("#slider-techs").children().eq(this.currentSlide).addClass("slider_dot_selected");
+      }
+
+      // Add a function that generates pagination to prototype
+      Siema.prototype.addPagination = function() {
+        const dots = document.createElement('div');
+        $(dots).attr('id', 'slider-techs');
+        $(dots).css("width", "300px");
+        $(dots).css("margin", "0 auto");
+        for (let i = 0; i < this.innerElements.length; i++) {
+          const dot = document.createElement('div');
+          $(dot).addClass("slider_dot");
+          if(i == 0){
+            $(dot).addClass("slider_dot_selected");
+          }
+          dot.addEventListener('click', () => {
+            this.goTo(i);
+          });
+          dots.appendChild(dot);
+        }
+        this.selector.appendChild(dots);
+      }
+
+      // Trigger pagination creator
+      mySiema.addPagination();
+
+
     });
     // $(function(){
     //   var maxMargin = $('#mid_section_toper').offset().top;
