@@ -15,5 +15,5 @@
   <p style="text-align: center; margin-top: 100px; font-size: 11px; font-weight: normal;">
     <?php echo $bottom_message ?>
   </p>
-  <img src="<?php echo get_template_directory_uri(); ?>/imgs/cairn.png">
+  <img src="<?php echo get_template_directory_uri(); ?>/imgs/logo_icon.svg" style="filter: brightness(0%)">
 </div>

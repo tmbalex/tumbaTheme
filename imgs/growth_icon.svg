@@ -9,9 +9,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="14.068794mm"
-   height="14.805948mm"
-   viewBox="0 0 14.068795 14.805949"
+   width="12.7mm"
+   height="12.7mm"
+   viewBox="0 0 12.7 12.7"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.4 (unknown)"
@@ -257,8 +257,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="4.9469363"
-     inkscape:cx="57.113691"
-     inkscape:cy="10.630425"
+     inkscape:cx="19.922719"
+     inkscape:cy="6.1428002"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -277,7 +277,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -285,13 +285,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(130.87438,-24.828614)">
-    <path
-       style="fill:#ffffff;stroke-width:0.26463625"
-       inkscape:connector-curvature="0"
-       class="c"
-       d="m -119.29038,37.054244 c 2.55875,-4.041925 3.60918,-8.91126 0.8671,-11.054817 -2.74209,-2.143557 -7.12299,-1.149126 -9.72234,1.407293 -2.59934,2.556419 -3.8959,8.972969 -1.35673,10.568267 2.53918,1.595298 7.65322,3.121183 10.21197,-0.920743 z"
-       id="path15094" />
+     transform="translate(130.15334,-25.747212)">
     <circle
        style="fill:#ffffff;stroke-width:0.26458332"
        class="c"
