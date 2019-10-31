@@ -28,20 +28,66 @@
   }
 ?>
 
- <!-- Header -->
-  <header class="masthead d-flex p-5" style="background: black;">
-    <div class="container text-left my-auto">
-      <img src="<?php echo get_template_directory_uri(); ?>/imgs/logo_inverted.png">
-    </div>
-  </header>
-
   <style>
+
+
+      .fixed_logo_icon_holder{
+        width: 100%;
+        max-width: 1280px;
+        padding-left: 40px;
+        margin: 0px auto;
+        z-index: 9999;
+      }
+
+      #fixed_logo_icon{
+        position: fixed;
+        z-index: 9999;
+        top: 43px;
+      }
+
+      .logo{
+        padding-left: 55px;
+        padding-top: 40px;
+      }
+
+      @media (max-width: 770px){
+        .fixed_logo_icon_holder{
+          padding-left: 20px;
+        }
+
+        #fixed_logo_icon{
+          top: 23px;
+        }
+
+        .logo {
+            padding-left: 35px;
+            padding-top: 20px;
+        }
+      }
+
+      .inverted{
+        filter: brightness(0%);
+      }
+
     .black_cutout_head{
-      position: absolute; left: 0; right: 0; height: 200px; width: 100%;
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 100px;
+      width: 100%;
+      transform: scaleY(-1);
+      object-fit: cover;
+      margin-top: -5px;
     }
 
-    #technology_header h1{
-      left: 0; right: 0; width: 100%; max-width: 980px; margin: 0 auto; font-size: 60px; font-weight: bold; position: absolute; color: white;
+    .technology_h1{
+      max-width: 1280px;
+      margin: 30px auto 0;
+      padding-left: 55px;
+      padding-bottom: 30px;
+      color: white;
+      font-size: 72px;
+      font-weight: bold;
     }
 
     #technology_header .headimage {
@@ -50,7 +96,7 @@
 
     #technology_header .headimage img{
       width: 100%;
-      height: 500px;
+      height: 40vh;
       object-fit: cover;
       object-position: bottom;
     }
@@ -58,12 +104,20 @@
     #content_holder{
       background: black;
       color: white;
+      padding: 0 65px;
+    }
+
+    @media (max-width: 770px){
+      #content_holder{
+        padding: 0 45px;
+        margin-bottom: -4px;
+      }
     }
 
     #tech_description{
-      max-width: 980px;
+      max-width: 1140px;
       margin: 0 auto;
-      padding-top: 30px;
+      padding: 30px 0;
     }
 
     .main_description{
@@ -75,10 +129,24 @@
       font-size: 22px;
     }
 
+    @media (max-width: 770px){
+      .technology_h1{
+        font-size: 52px;
+      }
+
+      .main_description{
+        font-size: 24px;
+      }
+
+      .sub_descriptions{
+        font-size: 18px;
+      }
+    }
+
     #tech_properties{
-      max-width: 980px;
+      max-width: 1140px;
       margin: 0 auto;
-      padding-top: 30px;
+      padding: 30px 0px;
     }
 
     .sub_headline{
@@ -96,16 +164,17 @@
 
     .black_cutout_mid{
       width: 100%;
-      height: 200px;
       object-fit: cover;
       object-position: bottom;
+      margin-top: -4px;
     }
 
     #success_content{
-      max-width: 980px;
-      margin: 0 auto;
-      padding-top: 30px;
       color: white;
+      width: 100%;
+      max-width: 1280px;
+      padding: 60px 75px 40px;
+      margin: 0 auto;
     }
 
     .success_headline{
@@ -116,6 +185,7 @@
 
     #success_table {
       width: 100%;
+      overflow: hidden;
     }
 
     #success_table table{
@@ -138,6 +208,7 @@
       width: 25%;
       display: block;
       float: left;
+      text-align: center;
     }
 
     #success_table td:last-child{
@@ -163,30 +234,73 @@
       border-radius: 50%;
     }
 
+    @media (max-width: 770px){
+
+      #success_content{
+        color: white;
+        width: 100%;
+        max-width: 1280px;
+        padding: 0 60px 49px;
+        margin: 0 auto;
+      }
+
+      #success_content table img{
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+      }
+
+      #success_table td:last-child{
+        font-size: 60px;
+        height: 90px;
+      }
+
+      #success_table tr:last-child{
+        font-size: 14px;
+      }
+
+      #success_table tr:last-child td:last-child{
+        font-size: 14px;
+      }
+
+      .quote{
+        font-size: 16px;
+      }
+    }
+
     #quotes{
       width: 100%;
       padding: 0;
       margin: 0;
     }
 
+    .quote{
+      padding-right: 0;
+      padding: 0;
+      margin: 0;
+      font-size: 18px;
+      text-shadow: none;
+      color: black;
+    }
+
     .black_cutout_inverted{
       width: 100%;
-      height: 200px;
-      object-fit: cover;
+      object-fit: contain;
       object-position: bottom;
-      transform: rotate(180deg);
     }
 
     #other_industries_holder{
       background: black;
       color: white;
+      width: 100%;
+      overflow: hidden;
     }
 
     #other_industries{
       width: 100%;
-      max-width: 980px;
+      max-width: 1140px;
       margin: 0 auto;
-      padding-bottom: 30px;
+      padding: 0 75px 30px;
     }
 
     .industries_headline{
@@ -196,27 +310,41 @@
 
     #last_cutout_holder{
       width: 100%;
-      height: 200px;
       margin-bottom: 100px;
     }
 
     #last_cutout_holder figure{
       width: 100%;
-      height: 200px;
+      height: 40vh;
     }
 
     #last_cutout_holder figure img{
       width: 100%;
-      height: 200px;
+      height: 40vh;
       object-fit: cover;
       object-position: bottom;
       z-index: 3;
       position: absolute;
     }
 
+    @media (max-width: 770px){
+        #last_cutout_holder figure{
+          width: 100%;
+          height: 20vh;
+        }
+
+        #last_cutout_holder figure img{
+          width: 100%;
+          height: 20vh;
+          object-fit: cover;
+          object-position: bottom;
+          z-index: 3;
+          position: absolute;
+        }
+      }
+
     .black_cutout_last{
       width: 100%;
-      height: 200px;
       object-fit: cover;
       object-position: bottom;
       z-index: 4;
@@ -226,28 +354,46 @@
 
   </style>
 
+  <!-- Header -->
+  <header class="masthead" style="background: black;">
+    <div class="fixed_logo_icon_holder">
+      <a href="/wrdprss/">
+        <img id="fixed_logo_icon" src="http://localhost/wrdprss/wp-content/themes/tumbaTheme/imgs/logo_icon.svg" class="">
+      </a>
+    </div>
+
+    <div class="container text-left my-auto" style="max-width: 1280px; margin: 0 auto;">
+      <div class="logo">
+        <a href="/wrdprss/">
+          <img src="<?php echo get_template_directory_uri(); ?>/imgs/logo_word.svg">
+        </a>
+      </div>
+    </div>
+
+    <h1 class="technology_h1"><?php the_title(); ?></h1>
+  </header>
+
   <div id="technology_header">
-    <img class="black_cutout_head" src="<?php echo get_template_directory_uri(); ?>/imgs/black_head_cutout.png">
-    <h1><?php the_title(); ?></h1>
+    <img class="black_cutout_head" src="<?php echo get_template_directory_uri(); ?>/imgs/grudge_top_green.svg" style="filter: brightness(0%);">
     <?php echo $content_array[0] ?>
   </div>
 
   <section id="content_holder">
       <div id="tech_description" class="row">
-        <div class="main_description col-6">
+        <div class="main_description col-12 col-md-6">
           <?php echo $content_array[1] ?>
         </div>
-        <div class="sub_descriptions  col-6">
+        <div class="sub_descriptions col-12 col-md-6">
           <?php echo $content_array[2] ?>
           <?php echo $content_array[3] ?>
         </div>
       </div>
       <div id="tech_properties" class="row">
-        <div class="technologies col-6">
+        <div class="technologies col-12 col-md-6">
           <p class="sub_headline">Technologies</p>
           <?php echo $content_array[4] ?>
         </div>
-        <div class="services col-6">
+        <div class="services col-12 col-md-6">
           <p class="sub_headline">Services</p>
           <?php echo $content_array[5] ?>
           <?php echo $content_array[6] ?>
@@ -255,29 +401,29 @@
       </div>
   </section>
 
-  <img class="black_cutout_mid" src="<?php echo get_template_directory_uri(); ?>/imgs/black_head_cutout.png">
+  <img class="black_cutout_mid" src="<?php echo get_template_directory_uri(); ?>/imgs/grudge_top_green.svg" style="filter: brightness(0%); object-fit: contain; transform: scale(-1, -1); margin-top: -5px;">
 
-  <section id="success_holder">
+  <section id="success_holder" style="width: 100%; text-shadow: 2px 2px 2px #00000033">
     <div id="success_content" class="row">
       <p class="success_headline">Success stories</p>
       <div id="success_table">
         <?php echo $content_array[7] ?>
       </div>
       <div id="quotes" class="row">
-        <div class="quote col-4">
+        <div class="quote col-12 col-sm-4">
           <?php echo $content_array[8] ?>
         </div>
-        <div class="quote col-4">
+        <div class="quote col-12 col-sm-4">
           <?php echo $content_array[9] ?>
         </div>
-        <div class="quote col-4">
+        <div class="quote col-12 col-sm-4">
           <?php echo $content_array[10] ?>
         </div>
       </div>
     </div>
   </section>
 
-  <img class="black_cutout_inverted" src="<?php echo get_template_directory_uri(); ?>/imgs/black_head_cutout.png">
+  <img class="black_cutout_inverted" src="<?php echo get_template_directory_uri(); ?>/imgs/grudge_top_green.svg" style="filter: brightness(0%); margin-bottom: -5px;">
 
   <section id="other_industries_holder">
     <div id="other_industries">
@@ -297,6 +443,53 @@
   </section>
 
   <div id="last_cutout_holder">
-    <img class="black_cutout_last" src="<?php echo get_template_directory_uri(); ?>/imgs/black_head_cutout.png">
+    <img class="black_cutout_last" src="<?php echo get_template_directory_uri(); ?>/imgs/grudge_bottom.svg" style="margin-top: -5px; transform: scaleY(-1)">
     <?php echo $content_array[0] ?>
   </div>
+
+  <script>
+    function docReady(fn) {
+          // see if DOM is already available
+          if (document.readyState === "complete" || document.readyState === "interactive") {
+              // call on next available tick
+              setTimeout(fn, 1);
+          } else {
+              document.addEventListener("DOMContentLoaded", fn);
+          }
+      }
+
+      function updateLogoColor() {
+          var scroll = $(window).scrollTop(); // how many pixels you've scrolled
+          var os = $('.black_cutout_mid:first').offset().top; // pixels to the top of div1
+          var ht = $('.black_cutout_mid:first').height() + $('#success_holder').height(); // height of div1 in pixels
+          // if you've scrolled further than the top of div1 plus it's height
+          // change the color. either by adding a class or setting a css property
+          if(scroll < os)
+            $('#fixed_logo_icon').removeClass('inverted');
+          if(scroll > os + ht)
+            $('#fixed_logo_icon').removeClass('inverted');
+          else if(scroll > os)
+            $('#fixed_logo_icon').addClass('inverted');
+
+
+      }
+
+
+
+      // This is then function used to detect if the element is scrolled into view
+      function elementScrolled(elem)
+      {
+        var docViewTop = $(window).scrollTop();
+        var docViewBottom = docViewTop + $(window).height();
+        var elemTop = $(elem).offset().top;
+        return ((elemTop <= docViewBottom) && (elemTop >= docViewTop));
+      }
+
+      docReady(function() {
+        $(window).scroll(updateLogoColor);
+        updateLogoColor();
+
+      });
+
+
+  </script>

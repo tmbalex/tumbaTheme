@@ -11,7 +11,7 @@
 ?>
 
 
-<div class="stone-cairn">
+<div class="stone-cairn" style="margin-top:80vh">
   <p style="text-align: center; margin-top: 100px; font-size: 11px; font-weight: normal;">
     <?php echo $bottom_message ?>
   </p>
