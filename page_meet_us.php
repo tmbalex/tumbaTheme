@@ -49,7 +49,8 @@
     #page_header h1{
       max-width: 960px;
       margin: 40px auto 100px;
-      font-size: 44px;
+      font-size: 54px;
+      font-weight: bold;
     }
 
     #location_holder{
@@ -61,15 +62,35 @@
     #location_list{
       bottom: 0;
       position: absolute;
+      padding-bottom: 20px;
     }
 
     #location_list a{
       width: 100%;
       display: block;
+      font-weight: bold;
+      font-size: 30px;
+      text-decoration: none;
+    }
+
+    #location_list a:hover{
+      color: white;
+    }
+
+    .location_link{
+      color: black;
+    }
+
+    .selected_location{
+      color: white;
     }
 
     #location_properties{
       text-align: right;
+    }
+
+    #location_properties p{
+      line-height: 130%;
     }
 
     #location_holder h2{
@@ -107,7 +128,13 @@
         <?php
           $titles = get_all_contacts_pages();
           foreach( $titles as $title){
-            echo "<a href=\"" . $title['link'] . "\">" . $title['name'] . "</a>";
+            if(strpos($title['link'], $_SERVER['REQUEST_URI']) !== false){
+              $selected = " selected_location";
+            }
+            else{
+              $selected = "";
+            }
+            echo "<a class=\"location_link" . $selected . "\" href=\"" . $title['link'] . "\">" . $title['name'] . "</a>";
           }
         ?>
 

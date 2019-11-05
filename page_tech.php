@@ -75,16 +75,16 @@
       right: 0;
       height: 100px;
       width: 100%;
-      transform: scaleY(-1);
+      transform: scale(-1, -1);
       object-fit: cover;
       margin-top: -5px;
     }
 
     .technology_h1{
       max-width: 1280px;
-      margin: 30px auto 0;
-      padding-left: 55px;
-      padding-bottom: 30px;
+      margin: 70px auto 0;
+      padding-left: 75px;
+      padding-bottom: 0px;
       color: white;
       font-size: 72px;
       font-weight: bold;
@@ -117,36 +117,41 @@
     #tech_description{
       max-width: 1140px;
       margin: 0 auto;
-      padding: 30px 0;
+      padding: 70px 0 0px;
     }
 
     .main_description{
-      font-size: 28px;
+      font-size: 29px;
       font-weight: bold;
+      padding-right: 60px;
     }
 
     .sub_descriptions{
-      font-size: 22px;
+      font-size: 19px;
+      padding-left: 60px;
     }
 
     @media (max-width: 770px){
       .technology_h1{
         font-size: 52px;
+        padding-left: 55px;
       }
 
       .main_description{
         font-size: 24px;
+        padding-right: 15px;
       }
 
       .sub_descriptions{
         font-size: 18px;
+        padding-left: 15px;
       }
     }
 
     #tech_properties{
       max-width: 1140px;
       margin: 0 auto;
-      padding: 30px 0px;
+      padding: 30px 0px 80px;
     }
 
     .sub_headline{
@@ -161,6 +166,23 @@
       object-fit: cover;
       margin: 20px;
     }
+
+    .services p{
+      margin-bottom: 20px;
+    }
+
+    .services a{
+      color: white;
+      font-weight: bold;
+      padding-top: 10px;
+    }
+
+    .services a:after {
+      font-family: 'FontAwesome';
+      content: "\f178";
+      padding-right: 5px;
+      padding-left: 10px;
+  }
 
     .black_cutout_mid{
       width: 100%;
@@ -240,13 +262,13 @@
         color: white;
         width: 100%;
         max-width: 1280px;
-        padding: 0 60px 49px;
+        padding: 60px 60px 49px;
         margin: 0 auto;
       }
 
       #success_content table img{
-        width: 80px;
-        height: 80px;
+        width: 70px;
+        height: 70px;
         border-radius: 50%;
       }
 
@@ -276,7 +298,7 @@
 
     .quote{
       padding-right: 0;
-      padding: 0;
+      padding: 0 15px;
       margin: 0;
       font-size: 18px;
       text-shadow: none;
@@ -304,8 +326,25 @@
     }
 
     .industries_headline{
-      font-size: 34px;
-      padding-bottom: 50px;
+      font-size: 25px;
+      padding-bottom: 10px;
+    }
+
+    .industry{
+      padding-top: 20px;
+    }
+
+    .other_industry_link{
+      color: #00EDAE;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .other_industry_link::after {
+        font-family: 'FontAwesome';
+        content: "\f178";
+        padding-right: 5px;
+        padding-left: 10px;
     }
 
     #last_cutout_holder{
@@ -433,8 +472,8 @@
         <?php
           $industries_list = get_all_pages_in_this_category();
           foreach($industries_list as $element){
-              echo "<div class=\"industry col-4\">
-                <a href=\"" . $element[link] . "\">" . $element[name] . "</a>
+              echo "<div class=\"industry col-12 col-md-4\">
+                <a class=\"other_industry_link\" href=\"" . $element[link] . "\">" . $element[name] . "</a>
               </div>";
           }
         ?>
