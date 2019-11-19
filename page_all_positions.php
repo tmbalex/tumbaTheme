@@ -93,17 +93,18 @@
     }
 
     #page_header h1{
-      max-width: 960px;
-      margin: 90px auto 20px;
-      padding: 0 60px;
+      max-width: 1280px;
+      margin: 90px auto 0px;
+      padding: 0 80px;
       font-size: 44px;
       font-weight: bold;
       text-shadow: 2px 2px 10px #00000033;
     }
 
     .open_positions_link a{
-      max-width: 960px;
+      max-width: 1280px;
       margin: 0 auto 120px;
+      padding: 0 80px;
       display: block;
       color: black;
       font-size: 16px;
@@ -154,7 +155,8 @@
     }
 
     #perks{
-      max-width: 960px;
+      max-width: 1280px;
+      padding: 0 60px;
       margin: 0 auto;
       color: white;
     }
@@ -178,7 +180,7 @@
       }
 
       #perks h3{
-        font-size: 26px;
+        font-size: 36px;
       }
 
       .perk{
@@ -188,7 +190,8 @@
     }
 
     #quote_holder{
-      max-width: 960px;
+      max-width: 1280px;
+      padding: 0px 80px;
       margin: 100px auto;
       color: white;
       text-shadow: 2px 2px 10px #00000033;
@@ -206,6 +209,11 @@
     }
 
     @media (max-width: 770px){
+
+      #quote_holder{
+        padding: 0px 0px;
+      }
+
       #quote_holder p{
         font-size: 32px;
         line-height: 36px;
@@ -214,8 +222,9 @@
     }
 
     #open_positions_holder{
-      max-width: 960px;
+      max-width: 1280px;
       margin: 100px auto;
+      padding: 0px 80px;
       color: white;
     }
 
@@ -259,7 +268,22 @@
 
     @media (max-width: 770px){
       .images_holder img{
-        margin: 8px 8px 8px 8px;
+        margin: 8px 3.5%;
+        width: 18%;
+      }
+    }
+
+    @media (max-width: 520px){
+      .images_holder img{
+        margin: 8px 3.5%;
+        width: 26%;
+      }
+    }
+
+    @media (max-width: 320px){
+      .images_holder img{
+        margin: 8px 3.5%;
+        width: 43%;
       }
     }
 
@@ -271,21 +295,21 @@
   <div id="page_header">
     <h1><?php echo $content_array[0] ?></h1>
     <div class="open_positions_link" href="#">
-      <a href="#"><i class="fa fa-arrow-down"></i> SEE OPEN POSITIONS</a>
+      <a href="#open_positions_holder"><i class="fa fa-arrow-down"></i> SEE OPEN POSITIONS</a>
     </div>
   </div>
 
   <img class="black_cutout_top" src="<?php echo get_template_directory_uri(); ?>/imgs/grudge_top_green.svg" style="filter: brightness(0%); object-fit: cover; height: 80px; margin-bottom: -2px;">
 
   <section id="our_reality_section">
-    <div class="row" style="padding-top: 50px; margin: 0 auto; max-width: 960px;">
+    <div class="row" style="padding: 50px 30px; margin: 0 auto; max-width: 960px;">
       <div class="col-12">
         <p style="font-size: 30px; color: #ffffff;"><img src="<?php echo get_template_directory_uri(); ?>/imgs/jobs_pile.png"/> Our reality</p>
       </div>
       <div class="video_holder col-12 col-md-7">
           <iframe width="100%" height="100%" src="https://www.youtube.com/embed/a1uOyMezyi0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
-      <div class="images_holder col-21 col-md-5">
+      <div class="images_holder col-12 col-md-5">
         <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
         <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
         <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
@@ -357,7 +381,7 @@
         function updateLogoColor() {
             var scroll = $(window).scrollTop(); // how many pixels you've scrolled
             var os = $('.black_cutout_top').offset().top; // pixels to the top of div1
-            var ht = $('.black_cutout_top').height() + $('#our_reality_section').height() + $('#perks').height() + ($('.black_cutout_bottom:first').height() * 2); // height of div1 in pixels
+            var ht = $('.black_cutout_top').height() + $('#our_reality_section').height() + $('#perks').height() + ($('.black_cutout_bottom:first').height() * 4); // height of div1 in pixels
             // if you've scrolled further than the top of div1 plus it's height
             // change the color. either by adding a class or setting a css property
             if(scroll < os)

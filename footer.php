@@ -29,7 +29,7 @@
       	</div>
         <div class="col-6 col-md-2 mt-4 mt-md-0">
       	  <p>Team</p>
-      	  <p><a href="#">Manifesto</a></p>
+      	  <p><a href="http://localhost/wrdprss/?page_id=451">Manifesto</a></p>
       	  <p><a href="#">Why Tumba</a></p>
       	  <p><a href="http://localhost/wrdprss/?page_id=339">Careers</a></p>
         </div>

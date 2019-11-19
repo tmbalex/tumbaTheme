@@ -10,6 +10,8 @@
 <?php
   if(get_the_ID() == 339)
     include_once("page_all_positions.php");
+  else if(get_the_ID() == 451)
+    include_once("page_manifesto.php");
   else{
       if(wp_get_post_parent_id() == 335)
         include_once("page_meet_us.php");
