@@ -28,6 +28,21 @@
   }
 ?>
 
+<!-- Core CSS file -->
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/photogallery/photoswipe.css">
+
+<!-- Skin CSS file (styling of UI - buttons, caption, etc.)
+     In the folder of skin CSS file there are also:
+     - .png and .svg icons sprite,
+     - preloader.gif (for browsers that do not support CSS animations) -->
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/photogallery/default-skin/default-skin.css">
+
+<!-- Core JS file -->
+<script src="<?php echo get_template_directory_uri(); ?>/photogallery/photoswipe.min.js"></script>
+
+<!-- UI JS file -->
+<script src="<?php echo get_template_directory_uri(); ?>/photogallery/photoswipe-ui-default.min.js"></script>
+
   <style>
     .fixed_logo_icon_holder{
       width: 100%;
@@ -72,7 +87,7 @@
   <header class="masthead">
     <div class="fixed_logo_icon_holder">
       <a href="/wrdprss/">
-        <img id="fixed_logo_icon" src="http://localhost/wrdprss/wp-content/themes/tumbaTheme/imgs/logo_icon.svg" class="inverted">
+        <img id="fixed_logo_icon" src="<?php echo get_template_directory_uri(); ?>/imgs/logo_icon.svg" class="inverted">
       </a>
     </div>
 
@@ -287,6 +302,11 @@
       }
     }
 
+    #instagram_images_holder img{
+      width: 100px;
+      height: 100px;
+    }
+
   </style>
 
 
@@ -309,20 +329,80 @@
       <div class="video_holder col-12 col-md-7">
           <iframe width="100%" height="100%" src="https://www.youtube.com/embed/a1uOyMezyi0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
-      <div class="images_holder col-12 col-md-5">
-        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
-        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
-        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
-        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
-        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
-        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
-        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
-        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
-        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
-        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
-        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
-        <img src="<?php echo get_template_directory_uri(); ?>/imgs/cart.png"/>
+      <div id="instagram_images_holder" class="images_holder col-12 col-md-5">
+
       </div>
+
+      <!-- Root element of PhotoSwipe. Must have class pswp. -->
+      <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+          <!-- Background of PhotoSwipe.
+               It's a separate element as animating opacity is faster than rgba(). -->
+          <div class="pswp__bg"></div>
+
+          <!-- Slides wrapper with overflow:hidden. -->
+          <div class="pswp__scroll-wrap">
+
+              <!-- Container that holds slides.
+                  PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                  Don't modify these 3 pswp__item elements, data is added later on. -->
+              <div class="pswp__container">
+                  <div class="pswp__item"></div>
+                  <div class="pswp__item"></div>
+                  <div class="pswp__item"></div>
+              </div>
+
+              <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+              <div class="pswp__ui pswp__ui--hidden">
+
+                  <div class="pswp__top-bar">
+
+                      <!--  Controls are self-explanatory. Order can be changed. -->
+
+                      <div class="pswp__counter"></div>
+
+                      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                      <!--
+                      <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                    -->
+
+                      <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                      <!-- element will get class pswp__preloader--active when preloader is running -->
+                      <div class="pswp__preloader">
+                          <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                              <div class="pswp__preloader__donut"></div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                      <div class="pswp__share-tooltip"></div>
+                  </div>
+
+                  <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                  </button>
+
+                  <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                  </button>
+
+                  <div class="pswp__caption">
+                      <div class="pswp__caption__center"></div>
+                  </div>
+
+              </div>
+
+          </div>
+
+      </div>
+
+
     </div>
 
   </section>
@@ -409,7 +489,46 @@
           $(window).scroll(updateLogoColor);
           updateLogoColor();
 
+          get_instagram_feed();
         });
+
+        function get_instagram_feed(){
+              $.get(
+                   "https://instagram.com/graphql/query/?query_id=17888483320059182&variables={\"id\":\"1951415043\",\"first\":12,\"after\":null}",
+                   function(data) {
+                     var items = [];
+
+                     var images = data.data.user.edge_owner_to_timeline_media.edges;
+                     $.each(images, function(id, image){
+                       if(id > 12) return;
+                       var newHtml = "<img src=\"" + image.node.thumbnail_src + "\"/>";
+                       var new_image = $(newHtml).prependTo("#instagram_images_holder");
+                       new_image.click(function(){openGallery(items, id)});
+
+                       items.push({
+                           src: image.node.display_url,
+                           w: 1080,
+                           h: 1080
+                       })
+                     });
+                   }
+              );
+        }
+
+        function openGallery(items, item_id){
+          var pswpElement = document.querySelectorAll('.pswp')[0];
+
+          // define options (if needed)
+          var options = {
+             // optionName: 'option value'
+             // for example:
+             index: item_id // start at first slide
+          };
+
+          // Initializes and opens PhotoSwipe
+          var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+          gallery.init();
+        }
 
 
     </script>

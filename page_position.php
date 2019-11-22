@@ -208,7 +208,7 @@
         max-width: 1280px;
         margin: 0 auto;
         padding: 260px 80px;
-        text-shadow: 2px 2px 2px black;
+        text-shadow: 2px 2px 2px #3d3d3d;
       }
 
       #form_holder h2{
@@ -231,7 +231,7 @@
         padding: 5px;
         font-size: 24px;
         margin-top: 25px;
-        text-shadow: 2px 2px 2px black;
+        text-shadow: 2px 2px 2px #3d3d3d;
         color: white;
       }
 
@@ -290,7 +290,8 @@
         <div class="col-12 col-md-4" style="float: right; margin: 30px 0 0;">
             <div style="transform: rotate(7deg);">
               <div>
-                <img src="<?php echo get_template_directory_uri(); ?>/imgs/file_field.svg"  style="float: right">
+                <input type="file" id="filesupload" multiple style="display:none"/>
+                <img id="file_field" src="<?php echo get_template_directory_uri(); ?>/imgs/file_field.svg"  style="cursor: pointer; float: right">
               </div>
             </div>
         </div>
@@ -300,7 +301,7 @@
 
           <div class="checkbox_holder col-12">
             <input type="checkbox" id="scales" name="scales">
-            <label for="scales"></label><span class="pseudo_label">I agree to Tumba's Terms&Conditions</span>
+            <label for="scales"></label><span class="pseudo_label">I agree to Tumba's <a href="#form_section">Terms&Conditions</a></span>
           </div>
 
           <input type="submit" label="Submit" class="col-12 col-md-4"/>
@@ -365,6 +366,16 @@
     position: absolute;
     top: 0px;
     font-size: 18px;
+  }
+
+  .checkbox_holder a{
+    border-bottom: 2px #AAEDAE dotted;
+    color: #AAEDAE;
+  }
+
+  .checkbox_holder a:hover{
+    border-bottom: 1px #AAEDAE solid;
+    text-decoration: none;
   }
 
     .steps_headline{
@@ -483,6 +494,17 @@
       docReady(function() {
         $(window).scroll(updateLogoColor);
         updateLogoColor();
+
+        //Files handling
+        $('#file_field').click(function(){ $('#filesupload').trigger('click'); });
+        $(function() {
+           $("#filesupload:file").change(function (){
+             var fileNames = $("#filesupload")[0].files;
+             for (var i = 0, f; f = fileNames[i]; i++) { }
+             alert(fileNames.length);
+             //$(".filename").html(fileName);
+           });
+        });
 
       });
 
