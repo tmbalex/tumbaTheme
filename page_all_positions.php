@@ -494,7 +494,7 @@
 
         function get_instagram_feed(){
               $.get(
-                   "https://instagram.com/graphql/query/?query_id=17888483320059182&variables={\"id\":\"1951415043\",\"first\":12,\"after\":null}",
+                   "https://instagram.com/graphql/query/?query_id=17888483320059182&variables={\"id\":\"3257178681\",\"first\":12,\"after\":null}",
                    function(data) {
                      var items = [];
 

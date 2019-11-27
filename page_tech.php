@@ -161,9 +161,8 @@
 
     .technologies table img{
       border-radius: 50%;
-      height: 100px;
-      width: 100px;
-      object-fit: cover;
+      max-width: 25vw;
+      object-fit: contain;
       margin: 20px;
     }
 
@@ -270,6 +269,8 @@
         width: 70px;
         height: 70px;
         border-radius: 50%;
+        max-width: 100%;
+        object-fit: contain;
       }
 
       #success_table td:last-child{
