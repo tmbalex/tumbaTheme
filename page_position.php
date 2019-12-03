@@ -279,6 +279,18 @@
           margin-top: 40px;
         }
       }
+
+      #files_label{
+        color: white;
+        width: 175px;
+        text-align: center;
+        /* height: 100%; */
+        /* display: block; */
+        position: absolute;
+        cursor: pointer;
+        top: 48%;
+        left: 35%;
+      }
     </style>
 
     <img class="black_cutout_top" src="<?php echo get_template_directory_uri(); ?>/imgs/grudge_top_green.svg" style="transform: scale(-1); filter: brightness(0%); object-fit: cover; height: 80px; margin-top: -2px;">
@@ -286,18 +298,20 @@
   <section id="form_section">
     <div id="form_holder" class="row">
       <h2 class="col-12">Apply for this position</h2>
-      <form>
+      <form id="application_form" method="POST" enctype="multipart/form-data" action="<?php echo get_template_directory_uri(); ?>/mmail_sender.php">
         <div class="col-12 col-md-4" style="float: right; margin: 30px 0 0;">
             <div style="transform: rotate(7deg);">
               <div>
-                <input type="file" id="filesupload" multiple style="display:none"/>
+                <input name="attachment[]" type="file" id="filesupload" multiple style="display:none"/>
                 <img id="file_field" src="<?php echo get_template_directory_uri(); ?>/imgs/file_field.svg"  style="cursor: pointer; float: right">
               </div>
             </div>
+            <p id="files_label"></p>
         </div>
         <div class="col-12 col-md-8 row">
-          <input type="text" placeholder="Your name" class="col-12"/>
-          <input type="text" placeholder="Your email" class="col-12"/>
+          <input name="position" type="text" value="<?php the_title() ?>" style="display: none;"/>
+          <input name="person_name" type="text" placeholder="Your name" class="col-12"/>
+          <input name="person_email" type="text" placeholder="Your email" class="col-12"/>
 
           <div class="checkbox_holder col-12">
             <input type="checkbox" id="scales" name="scales">
@@ -497,13 +511,38 @@
 
         //Files handling
         $('#file_field').click(function(){ $('#filesupload').trigger('click'); });
+        $('#files_label').click(function(){ $('#filesupload').trigger('click'); });
         $(function() {
            $("#filesupload:file").change(function (){
              var fileNames = $("#filesupload")[0].files;
-             for (var i = 0, f; f = fileNames[i]; i++) { }
-             alert(fileNames.length);
-             //$(".filename").html(fileName);
+             if(fileNames.length > 0){
+               $("#file_field").attr("src", "<?php echo get_template_directory_uri(); ?>/imgs/file_field_selected.svg");
+               $("#files_label").html(fileNames.length + " files added");
+             }
+             else{
+               $("#file_field").attr("src", "<?php echo get_template_directory_uri(); ?>/imgs/file_field.svg");
+               $("#files_label").html("");
+             }
            });
+        });
+
+
+        //Form get_all_position_pages
+        $("#sapplication_form").submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+
+            $.ajax({
+                url: "<?php echo get_template_directory_uri(); ?>/mmail_sender.php",
+                type: 'POST',
+                data: formData,
+                success: function (data) {
+                    alert(data)
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
         });
 
       });
