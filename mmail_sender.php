@@ -1,170 +1,196 @@
 <?php
 /*
-  if($_POST['position'] != ""){
-    echo $_POST['position'] . "<br/>";
-    $to = "alex.brestt@gmail.com";
-    $subject ="Tumba application for " . $_POST['position'];
-    $message = "Position: " . $_POST['position'] . "\n" .
-               "Name: " . $_POST['person_name'] . "\n" .
-               "E-mail: " . $_POST['person_email'];
+ error_reporting(E_ALL);
+ ini_set('display_errors', 1);
+
+if(isset($_FILES) && (bool) $_FILES) {
 
 
-    // a random hash will be necessary to send mixed content
-    $separator = md5(time());
+	$allowedExtensions = array("pdf","doc","docx","gif","jpeg","jpg","png","rtf","txt");
 
-    // carriage return type (RFC)
-    $eol = "\r\n";
+  $total = count($_FILES['attachment']['name']);
+	$files = array();
+  $targetDir = __DIR__.'/uploads/';
 
-    // main header (multipart mandatory)
-    $headers = "From: name <test@test.com>" . $eol;
-    $headers .= "MIME-Version: 1.0" . $eol;
-    $headers .= "Content-Type: multipart/mixed; boundary=\"" . $separator . "\"" . $eol;
-    $headers .= "Content-Transfer-Encoding: 7bit" . $eol;
-    $headers .= "This is a MIME encoded message." . $eol;
+  $files = array();
+	for( $i=0 ; $i < $total ; $i++ ) {
+		$file_name = basename($_FILES["attachment"]["name"][$i]);
+		$temp_name = basename($_FILES["attachment"]["tmp_name"][$i]);
+    $targetFilePath = $targetDir . $file_name;
+		$file_type = pathinfo($targetFilePath,PATHINFO_EXTENSION);
+		$path_parts = pathinfo($file_name);
+		$ext = $path_parts['extension'];
+		if(!in_array($ext,$allowedExtensions)) {
+			die("File $file_name has the extensions $ext which is not allowed");
+		}
+    $file['tmp_name'] = $targetFilePath;
+    $file['name'] = $file_name;
+		array_push($files,$file);
+	}
 
-    $attachments = $_POST['files'];
+	$to = 'aleksandar.brestnichky@insitex.com';
+	$from = "sender@example.com";
+	$subject ="Tumba application for " . $_POST['position'] . " from " . $_POST['person_name'];
+	$message = "Position: " . $_POST['position'] . "\n" .
+             "Name: " . $_POST['person_name'] . "\n" .
+             "E-mail: " . $_POST['person_email'];
 
-    //SEND Mail
-    if (mail($to, $subject, $message, $headers, $attachments)) {
-        echo "mail send ... OK"; // or use booleans here
-    } else {
-        echo "mail send ... ERROR!";
-        print_r( error_get_last() );
-    }
-  }
+  $from = 'sender@example.com';
+  $fromName = 'Tumba website';
+	$headers = "From: $fromName"." <".$from.">";
+
+	// boundary
+	$semi_rand = md5(time());
+	$mime_boundary = "==Multipart_Boundary_x{$semi_rand}x";
+
+	// headers for attachment
+	$headers .= "\nMIME-Version: 1.0\n" . "Content-Type: multipart/mixed;\n" . " boundary=\"{$mime_boundary}\"";
+
+	// multipart boundary
+	$message = "This is a multi-part message in MIME format.\n\n" . "--{$mime_boundary}\n" . "Content-Type: text/plain; charset=\"iso-8859-1\"\n" . "Content-Transfer-Encoding: 7bit\n\n" . $message . "\n\n";
+	$message .= "--{$mime_boundary}\n";
+
+	// preparing attachments
+	for($x=0;$x<count($files);$x++){
+		$file = fopen($files[$x]['tmp_name'],"rb");
+		$data = fread($file,filesize($files[$x]['tmp_name']));
+		fclose($file);
+		$data = chunk_split(base64_encode($data));
+		$name = $files[$x]['name'];
+		$message .= "Content-Type: {\"application/octet-stream\"};\n" . " name=\"$name\"\n" .
+		"Content-Disposition: attachment;\n" . " filename=\"$name\"\n" .
+		"Content-Transfer-Encoding: base64\n\n" . $data . "\n\n";
+		$message .= "--{$mime_boundary}\n";
+	}
+	// send
+
+	$ok = mail($to, $subject, $message, $headers);
+	if ($ok) {
+		echo "<p>mail sent to $to!</p>";
+	} else {
+		echo "<p>mail could not be sent!</p>";
+	}
+}
+
 */
-?>
 
-<?php
-$postData = $uploadedFile = $statusMsg = '';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$postData = $_POST;
+$email = $_POST['person_email'];
+$name = $_POST['person_name'];
+
+$postData = $statusMsg = '';
 $msgClass = 'errordiv';
 if(isset($_POST['person_name'])){
     // Get the submitted form data
-    $postData = $_POST;
-    $email = $_POST['person_email'];
-    $name = $_POST['person_name'];
-    $subject ="Tumba application for " . $_POST['position'];
-    $message = "Position: " . $_POST['position'] . "\n" .
-               "Name: " . $_POST['person_name'] . "\n" .
-               "E-mail: " . $_POST['person_email'];
 
     // Check whether submitted data is not empty
-    if(!empty($email) && !empty($name) && !empty($subject) && !empty($message)){
+    if(!empty($email) && !empty($name)){
 
         // Validate email
         if(filter_var($email, FILTER_VALIDATE_EMAIL) === false){
             $statusMsg = 'Please enter your valid email.';
-        }else{
+        }
+        else{
             $uploadStatus = 1;
-
+            $uploadedFiles = array();
 
             // Upload attachment file
             if(!empty($_FILES["attachment"]["name"])){
                 // File path config
                 $targetDir = __DIR__.'/uploads/';
-                $fileName = basename($_FILES["attachment"]["name"]);
-                $targetFilePath = $targetDir . $fileName;
-                $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
 
-                // Allow certain file formats
-                $allowTypes = array('pdf', 'doc', 'docx', 'jpg', 'png', 'jpeg');
-                if(in_array($fileType, $allowTypes)){
-                    // Upload file to the server
-                    if(move_uploaded_file($_FILES["attachment"]["tmp_name"], $targetFilePath)){
-                        $uploadedFile = $targetFilePath;
-                    }else{
-                        $uploadStatus = 0;
-                        $statusMsg = "Sorry, there was an error uploading your file.";
-                    }
-                }else{
-                    $uploadStatus = 0;
-                    $statusMsg = 'Sorry, only PDF, DOC, JPG, JPEG, & PNG files are allowed to upload.';
+                //TODO CHECK FOR EMPTY FILE NAMES
+                //$files = array_filter($_FILES['upload']['name']); //something like that to be used before processing files.
+
+                // Count # of uploaded files in array
+                $total = count($_FILES['attachment']['name']);
+
+                // Loop through each file
+                for( $i=0 ; $i < $total ; $i++ ) {
+
+                  $fileName = basename($_FILES["attachment"]["name"][$i]);
+                  $targetFilePath = $targetDir . $fileName;
+                  $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
+
+                  // Allow certain file formats
+                  $allowTypes = array('pdf', 'doc', 'docx', 'jpg', 'png', 'jpeg');
+                  if(in_array($fileType, $allowTypes)){
+                      // Upload file to the server
+                      if(move_uploaded_file($_FILES["attachment"]["tmp_name"][$i], $targetFilePath)){
+                          $uploadedFiles[$i] = $targetFilePath;
+                      }else{
+                          $uploadStatus = 0;
+                          $statusMsg = "Sorry, there was an error uploading your file.";
+                          exit();
+                      }
+                  }else{
+                      $uploadStatus = 0;
+                      $statusMsg = 'Sorry, only PDF, DOC, JPG, JPEG, & PNG files are allowed to upload.';
+                      exit();
+                  }
                 }
-
-                exit();
             }
             if($uploadStatus == 1){
 
-                // Recipient
-                $toEmail = 'aleksandar.brestnichky@insitex.com';
+              $to = 'aleksandar.brestnichky@insitex.com';
+              $from = "sender@example.com";
+              $subject ="Tumba application for " . $_POST['position'] . " from " . $_POST['person_name'];
+              $message = "Position: " . $_POST['position'] . "\n" .
+                         "Name: " . $_POST['person_name'] . "\n" .
+                         "E-mail: " . $_POST['person_email'];
 
-                // Sender
-                $from = 'sender@example.com';
-                $fromName = 'Tumba website';
+              $from = 'sender@example.com';
+              $fromName = 'Tumba website';
+              $headers = "From: $fromName"." <".$from.">";
 
-                // Subject
-                $emailSubject = "Tumba application for " . $_POST['position'] . " from " . $_POST['person_name'];
+              // boundary
+              $semi_rand = md5(time());
+              $mime_boundary = "==Multipart_Boundary_x{$semi_rand}x";
 
-                // Message
-                $htmlContent = '<h2>Tumba application for ' . $_POST['position'] . " from " . $_POST['person_name'] . '</h2>
-                    <p><b>Name:</b> '.$name.'</p>
-                    <p><b>Email:</b> '.$email.'</p>
-                    <p><b>Subject:</b> '.$emailSubject.'</p>';
+              // headers for attachment
+              $headers .= "\nMIME-Version: 1.0\n" . "Content-Type: multipart/mixed;\n" . " boundary=\"{$mime_boundary}\"";
 
-                // Header for sender info
-                $headers = "From: $fromName"." <".$from.">";
-                if(!empty($uploadedFile) && file_exists($uploadedFile)){
+              // multipart boundary
+              $message = "This is a multi-part message in MIME format.\n\n" . "--{$mime_boundary}\n" . "Content-Type: text/plain; charset=\"iso-8859-1\"\n" . "Content-Transfer-Encoding: 7bit\n\n" . $message . "\n\n";
+              $message .= "--{$mime_boundary}\n";
 
-                    // Boundary
-                    $semi_rand = md5(time());
-                    $mime_boundary = "==Multipart_Boundary_x{$semi_rand}x";
+              // preparing attachments
+              for($i = 0; $i < count($uploadedFiles); $i++){
+                $file = fopen($uploadedFiles[$i],"rb");
+                $data = fread($file,filesize($uploadedFiles[$i]));
+                fclose($file);
+                $data = chunk_split(base64_encode($data));
+                $name = basename($uploadedFiles[$i]);
+                $message .= "Content-Type: {\"application/octet-stream\"};\n" . " name=\"$name\"\n" .
+                "Content-Disposition: attachment;\n" . " filename=\"$name\"\n" .
+                "Content-Transfer-Encoding: base64\n\n" . $data . "\n\n";
+                $message .= "--{$mime_boundary}\n";
+              }
+              // send
 
-                    // Headers for attachment
-                    $headers .= "\nMIME-Version: 1.0\n" . "Content-Type: multipart/mixed;\n" . " boundary=\"{$mime_boundary}\"";
-
-                    // Multipart boundary
-                    $message = "--{$mime_boundary}\n" . "Content-Type: text/html; charset=\"UTF-8\"\n" .
-                    "Content-Transfer-Encoding: 7bit\n\n" . $htmlContent . "\n\n";
-
-                    // Preparing attachment
-                    if(is_file($uploadedFile)){
-                        $message .= "--{$mime_boundary}\n";
-                        $fp =    @fopen($uploadedFile,"rb");
-                        $data =  @fread($fp,filesize($uploadedFile));
-                        @fclose($fp);
-                        $data = chunk_split(base64_encode($data));
-                        $message .= "Content-Type: application/octet-stream; name=\"".basename($uploadedFile)."\"\n" .
-                        "Content-Description: ".basename($uploadedFile)."\n" .
-                        "Content-Disposition: attachment;\n" . " filename=\"".basename($uploadedFile)."\"; size=".filesize($uploadedFile).";\n" .
-                        "Content-Transfer-Encoding: base64\n\n" . $data . "\n\n";
-                    }
-
-                    $message .= "--{$mime_boundary}--";
-                    $returnpath = "-f" . $email;
-
-                    //SEND Mail
-                    if ($mail = mail($toEmail, $emailSubject, $message, $headers, $returnpath)) {
-                        echo "mail send ... OK"; // or use booleans here
-                    } else {
-                        echo "mail send ... ERROR!";
-                        //print_r( error_get_last() );
-                    }
-
-                    // Delete attachment file from the server
-                    @unlink($uploadedFile);
-                }else{
-                     // Set content-type header for sending HTML email
-                    $headers .= "\r\n". "MIME-Version: 1.0";
-                    $headers .= "\r\n". "Content-type:text/html;charset=UTF-8";
-
-                    // Send email
-                    $mail = mail($toEmail, $emailSubject, $htmlContent, $headers);
-                }
-
-                // If mail sent
-                if($mail){
-                    $statusMsg = 'Your contact request has been submitted successfully !';
-                    $msgClass = 'succdiv';
-
-                    $postData = '';
-                }else{
-                    $statusMsg = 'Your contact request submission failed, please try again.';
-                }
-            }
-        }
-    }else{
-        $statusMsg = 'Please fill all the fields.';
+              $ok = mail($to, $subject, $message, $headers);
+              if ($ok) {
+                echo "<p>mail sent to $to!</p>";
+              } else {
+                echo "<p>mail could not be sent!</p>";
+              }
+          }
     }
+  }
 }
 else echo "no submit";
 ?>
