@@ -291,6 +291,22 @@
         top: 48%;
         left: 35%;
       }
+
+      #application_form{
+          display: block;
+      }
+
+      #form_res{
+        display: none;
+      }
+
+      #form_res p{
+        font-size: 24px;
+        color: white;
+        margin-top: 60px;
+        line-height: 48px;
+        padding-bottom: 150px;
+      }
     </style>
 
     <img class="black_cutout_top" src="<?php echo get_template_directory_uri(); ?>/imgs/grudge_top_green.svg" style="transform: scale(-1); filter: brightness(0%); object-fit: cover; height: 80px; margin-top: -2px;">
@@ -298,7 +314,7 @@
   <section id="form_section">
     <div id="form_holder" class="row">
       <h2 class="col-12">Apply for this position</h2>
-      <form id="application_form" method="POST" enctype="multipart/form-data" action="<?php echo get_template_directory_uri(); ?>/mmail_sender.php">
+      <form id="application_form" method="POST" enctype="multipart/form-data">
         <div class="col-12 col-md-4" style="float: right; margin: 30px 0 0;">
             <div style="transform: rotate(7deg);">
               <div>
@@ -321,6 +337,12 @@
           <input type="submit" label="Submit" class="col-12 col-md-4"/>
         </div>
       </form>
+      <div id="form_res">
+        <p>
+          Thank you, your application has been submitted sucessfully.<br />
+          Read below what happens next.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -528,7 +550,7 @@
 
 
         //Form get_all_position_pages
-        $("#sapplication_form").submit(function(e) {
+        $("#application_form").submit(function(e) {
             e.preventDefault();
             var formData = new FormData(this);
 
@@ -537,7 +559,12 @@
                 type: 'POST',
                 data: formData,
                 success: function (data) {
-                    alert(data)
+                    if(data == "OK"){
+                      $("#application_form").hide();
+                      $("#form_res").show();
+                    }else{
+                      alert("There was a problem, sending your application!" + data);
+                    }
                 },
                 cache: false,
                 contentType: false,

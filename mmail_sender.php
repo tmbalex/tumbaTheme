@@ -135,12 +135,10 @@ if(isset($_POST['person_name'])){
                       }else{
                           $uploadStatus = 0;
                           $statusMsg = "Sorry, there was an error uploading your file.";
-                          exit();
                       }
                   }else{
                       $uploadStatus = 0;
                       $statusMsg = 'Sorry, only PDF, DOC, JPG, JPEG, & PNG files are allowed to upload.';
-                      exit();
                   }
                 }
             }
@@ -184,10 +182,24 @@ if(isset($_POST['person_name'])){
 
               $ok = mail($to, $subject, $message, $headers);
               if ($ok) {
-                echo "<p>mail sent to $to!</p>";
+                echo "OK";
               } else {
                 echo "<p>mail could not be sent!</p>";
               }
+          }
+          else{
+            $to = 'aleksandar.brestnichky@insitex.com';
+            $subject ="Tumba application for " . $_POST['position'] . " from " . $_POST['person_name'];
+            $message = "Position: " . $_POST['position'] . "\n" .
+                       "Name: " . $_POST['person_name'] . "\n" .
+                       "E-mail: " . $_POST['person_email'];
+
+            $ok = mail($to, $subject, $message);
+            if ($ok) {
+              echo "OK";
+            } else {
+              echo "<p>mail could not be sent!</p>";
+            }
           }
     }
   }

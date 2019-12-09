@@ -8,7 +8,9 @@ Tags: responsive, black, bootstrap
 
 body{
   background: #00EDAE;
-  font-family: 'Open Sans', sans-serif;
+  font-family: acumin-pro, sans-serif !important;
+  font-style: normal;
+  font-weight: 400;
 }
 
 .thold{

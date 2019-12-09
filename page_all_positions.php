@@ -279,6 +279,7 @@
     .images_holder img{
       margin: 5px 4px 5px 5px;
       float: right;
+      cursor: pointer;
     }
 
     @media (max-width: 770px){

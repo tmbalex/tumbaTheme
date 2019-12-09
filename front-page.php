@@ -246,7 +246,7 @@
       </div>
       <div style="color: white; max-width: 1280px; margin: 0 auto; font-size: 38px; padding: 50px 60px 100px; text-align: center;">
           <?php echo get_theme_mod('frontpage-top-headline')?>
-          <a style="white-space: nowrap; color: black;" href="<?php echo get_theme_mod('frontpage-top-headline-link-href')?>">
+          <a href="mailto:contact@tumba.solutions<?php /* echo get_theme_mod('frontpage-top-headline-link-href') */?>" style="white-space: nowrap; color: black;">
             <?php echo get_theme_mod('frontpage-top-headline-link')?>
           </a>
       </div>
